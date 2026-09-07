@@ -15,3 +15,8 @@ def get_database_path() -> Path:
 
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5-coder:7b")
+
+MAX_REVIEWS_PER_APP = int(os.getenv("MAX_REVIEWS_PER_APP", "30"))
+MAX_COMPETITORS = int(os.getenv("MAX_COMPETITORS", "10"))
+MAX_SEARCH_RESULTS_PER_TOPIC = int(os.getenv("MAX_SEARCH_RESULTS_PER_TOPIC", "10"))
+MAX_RESEARCH_PAGES = int(os.getenv("MAX_RESEARCH_PAGES", "30"))

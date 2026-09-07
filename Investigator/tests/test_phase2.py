@@ -1,4 +1,5 @@
 import sqlite3
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -9,7 +10,7 @@ sys.path.insert(0, str(ROOT))
 
 from analysis import validate_assessment
 from boundary_check import assert_unchanged, snapshot_files
-from database import get_connection, select_next_opportunity
+from database import get_connection, recover_interrupted_investigations, select_next_opportunity
 from handoff import import_opportunities
 from investigate import analyze_with_ollama, run_one_investigation
 from ollama_client import OllamaClient
@@ -29,6 +30,7 @@ VALID_RESULT = {
     "final_score": 6,
     "recommendation": "PROMISING",
     "summary": "A plausible opportunity based on available evidence.",
+    "strongest_argument_against": "The market may be too small to support another product.",
 }
 
 
@@ -113,8 +115,11 @@ class Phase2Tests(unittest.TestCase):
             "final_score",
             "recommendation",
             "summary",
+            "strongest_argument_against",
         ):
             self.assertIn(field, client.prompt)
+        self.assertIn("Do not return bare scores", client.prompt)
+        self.assertIn("market_potential in user_analysis", client.prompt)
 
     def test_lifecycle_and_selection(self):
         with TemporaryDirectory() as directory:
@@ -128,7 +133,13 @@ class Phase2Tests(unittest.TestCase):
             )
 
             def research(_opportunity):
-                return {"sources": [], "errors": []}
+                return {
+                    "sources": [],
+                    "errors": [],
+                    "reviews": [{"rating": 1, "text": "Data loss"}],
+                    "competitors": [{"url": "https://competitor.test"}],
+                    "alternatives": [{"url": "https://notes.test"}],
+                }
 
             def analyze(_opportunity, _evidence):
                 return dict(VALID_RESULT)
@@ -136,9 +147,16 @@ class Phase2Tests(unittest.TestCase):
             self.assertTrue(run_one_investigation(research, analyze, database_path))
             with get_connection(database_path) as connection:
                 row = connection.execute(
-                    "SELECT status, final_score, investigated_at FROM investigations WHERE app_id = 2"
+                    "SELECT status, final_score, investigated_at, summary FROM investigations WHERE app_id = 2"
                 ).fetchone()
-                self.assertEqual(tuple(row), ("COMPLETE", 6, row[2]))
+                self.assertEqual(tuple(row[:3]), ("COMPLETE", 6, row[2]))
+                self.assertIn("Strongest argument against", row[3])
+                evidence = connection.execute(
+                    "SELECT raw_reviews, raw_competitors, raw_alternatives FROM investigations WHERE app_id = 2"
+                ).fetchone()
+                self.assertEqual(json.loads(evidence[0])[0]["rating"], 1)
+                self.assertEqual(json.loads(evidence[1])[0]["url"], "https://competitor.test")
+                self.assertEqual(json.loads(evidence[2])[0]["url"], "https://notes.test")
             self.assertEqual(select_next_opportunity(database_path)["app_id"], 1)
 
     def test_failure_preserves_error(self):
@@ -154,6 +172,27 @@ class Phase2Tests(unittest.TestCase):
                 row = connection.execute("SELECT status, error FROM investigations").fetchone()
             self.assertEqual(row[0], "FAILED")
             self.assertIn("research unavailable", row[1])
+            self.assertEqual(select_next_opportunity(database_path)["app_id"], 3)
+
+            self.assertTrue(run_one_investigation(lambda _o: {"reviews": [], "competitors": [], "alternatives": []}, lambda _o, _e: dict(VALID_RESULT), database_path))
+            with get_connection(database_path) as connection:
+                self.assertEqual(connection.execute("SELECT COUNT(*) FROM investigations").fetchone()[0], 1)
+                self.assertEqual(connection.execute("SELECT status FROM investigations").fetchone()[0], "COMPLETE")
+
+    def test_interrupted_investigation_is_recovered_for_retry(self):
+        with TemporaryDirectory() as directory:
+            database_path = Path(directory) / "investigator.db"
+            import_opportunities([{"app_id": 30, "score": 6}], database_path)
+            with get_connection(database_path) as connection:
+                connection.execute(
+                    "INSERT INTO investigations (app_id, status) VALUES (30, 'IN_PROGRESS')"
+                )
+            self.assertEqual(recover_interrupted_investigations(database_path), 1)
+            with get_connection(database_path) as connection:
+                row = connection.execute("SELECT status, error FROM investigations").fetchone()
+            self.assertEqual(row[0], "FAILED")
+            self.assertIn("Recovered interrupted", row[1])
+            self.assertEqual(select_next_opportunity(database_path)["app_id"], 30)
 
     def test_constraints_and_research(self):
         with TemporaryDirectory() as directory:
@@ -178,6 +217,23 @@ class Phase2Tests(unittest.TestCase):
             invalid = dict(VALID_RESULT)
             invalid["final_score"] = 11
             validate_assessment(invalid)
+        with self.assertRaises(ValueError):
+            invalid = dict(VALID_RESULT)
+            invalid["final_score"] = 8
+            validate_assessment(invalid)
+
+    def test_missing_url_still_collects_bounded_search_evidence(self):
+        calls = []
+
+        def search(query):
+            calls.append(query)
+            return "<a href='https://example.test/result'>Result</a> 2 stars has ads."
+
+        evidence = collect_research({"app_name": "Example"}, search=search)
+        self.assertEqual(len(calls), 3)
+        self.assertTrue(evidence["reviews"])
+        self.assertTrue(evidence["competitors"])
+        self.assertTrue(evidence["alternatives"])
 
 
 if __name__ == "__main__":

@@ -40,4 +40,27 @@ Run the offline test suite with:
 python3 -m unittest discover -s tests -v
 ```
 
-Final score bands are interpreted as follows: `1-3` is `PASS`, `4-5` is `INVESTIGATE_FURTHER`, `6-7` is `PROMISING`, and `8-10` is `STRONG_OPPORTUNITY`.
+Final score bands are interpreted as follows: `1-3` is `PASS`, `4-5` is `INVESTIGATE_FURTHER`, `6-7` is `PROMISING`, and `8-10` is `STRONG_OPPORTUNITY`. The validator rejects recommendation and score-band mismatches. Ollama must explain build difficulty and proprietary dependency in `app_analysis`, market potential in `user_analysis`, competition in `competitor_analysis`, and the final score in `summary`; scores of 8 or higher require strong evidence and remain uncommon.
+
+## Phase 2.1 Evidence and Research Limits
+
+Investigations preserve bounded JSON samples in the existing `investigations` table:
+
+- `raw_reviews`
+- `raw_competitors`
+- `raw_alternatives`
+
+Existing Phase 2 databases are migrated additively when `init_database()` runs. No additional tables are created.
+
+Research limits are centralized in `config.py` and can be overridden with environment variables:
+
+```text
+MAX_REVIEWS_PER_APP=30
+MAX_COMPETITORS=10
+MAX_SEARCH_RESULTS_PER_TOPIC=10
+MAX_RESEARCH_PAGES=30
+```
+
+The collector continues with bounded search research when an imported opportunity does not have a public URL. Missing pages and incomplete source data remain recorded as evidence errors rather than aborting collection.
+
+The Ollama assessment separates observed evidence from interpretation, asks for repeated complaint patterns, requires a strongest argument against the opportunity, and treats high scores as rare. That counterargument is folded into the existing `summary` field. A failed investigation can be retried in place, and interrupted `IN_PROGRESS` records are marked `FAILED` at startup; completed investigations are never automatically repeated.

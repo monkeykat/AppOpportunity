@@ -3,9 +3,14 @@
 from html.parser import HTMLParser
 import re
 from typing import Any, Callable, Dict, List, Optional
-from urllib.parse import urljoin, urlparse
-from urllib.parse import quote_plus
+from urllib.parse import quote_plus, urljoin, urlparse
 from google_play import fetch_page
+from config import (
+    MAX_COMPETITORS,
+    MAX_RESEARCH_PAGES,
+    MAX_REVIEWS_PER_APP,
+    MAX_SEARCH_RESULTS_PER_TOPIC,
+)
 
 
 class _TextParser(HTMLParser):
@@ -56,7 +61,11 @@ def _review_snippets(text: str, limit: int = 20) -> List[Dict[str, Any]]:
     return sorted(snippets, key=lambda item: (item["rating"] is None, item["rating"] or 9))[:limit]
 
 
-def _search_records(query: str, html: str, limit: int = 10) -> List[Dict[str, str]]:
+def _search_records(
+    query: str,
+    html: str,
+    limit: int = MAX_SEARCH_RESULTS_PER_TOPIC,
+) -> List[Dict[str, str]]:
     parser = _TextParser()
     parser.feed(html)
     records = []
@@ -92,6 +101,7 @@ def collect_research(
     fetcher = fetch or _default_fetch
     searcher = search or _default_search
     url = opportunity.get("url")
+    pages_opened = 0
     evidence: Dict[str, Any] = {
         "app": dict(opportunity),
         "sources": [],
@@ -100,53 +110,54 @@ def collect_research(
         "alternatives": [],
         "errors": [],
     }
-    if not url:
+    if url:
+        try:
+            app_source = _source_record(url, "app_page", fetcher(url))
+            pages_opened += 1
+            evidence["sources"].append(app_source)
+            evidence["reviews"] = _review_snippets(app_source["text"], MAX_REVIEWS_PER_APP)
+            for link in app_source["links"]:
+                absolute = urljoin(url, link)
+                host = urlparse(absolute).netloc
+                if host and host != urlparse(url).netloc and pages_opened < MAX_RESEARCH_PAGES:
+                    try:
+                        evidence["sources"].append(
+                            _source_record(absolute, "developer_or_documentation", fetcher(absolute))
+                        )
+                        pages_opened += 1
+                    except Exception as error:
+                        evidence["errors"].append({"url": absolute, "error": str(error)})
+                    break
+        except Exception as error:
+            evidence["errors"].append({"url": url, "error": str(error)})
+    else:
         evidence["errors"].append("Opportunity has no public URL")
-        return evidence
 
-    try:
-        app_source = _source_record(url, "app_page", fetcher(url))
-        evidence["sources"].append(app_source)
-        evidence["reviews"] = _review_snippets(app_source["text"])
-        for link in app_source["links"]:
-            absolute = urljoin(url, link)
-            host = urlparse(absolute).netloc
-            if host and host != urlparse(url).netloc:
-                try:
-                    evidence["sources"].append(
-                        _source_record(absolute, "developer_or_documentation", fetcher(absolute))
-                    )
-                except Exception as error:
-                    evidence["errors"].append({"url": absolute, "error": str(error)})
-                break
-    except Exception as error:
-        evidence["errors"].append({"url": url, "error": str(error)})
-
-    if searcher:
+    if searcher and pages_opened < MAX_RESEARCH_PAGES:
         app_name = opportunity.get("app_name") or str(opportunity.get("app_id", "app"))
         review_query = '"{}" Google Play reviews'.format(app_name)
         try:
             review_html = searcher(review_query)
-            evidence["reviews"].extend(_review_snippets(_source_record(
-                "search:{}".format(review_query), "review_search", review_html
-            )["text"]))
-            evidence["sources"].append({
-                "url": "search:{}".format(review_query),
-                "kind": "review_search",
-                "text": _source_record("", "review_search", review_html)["text"][:12000],
-            })
+            pages_opened += 1
+            review_source = _source_record("search:{}".format(review_query), "review_search", review_html)
+            evidence["reviews"].extend(_review_snippets(review_source["text"], MAX_REVIEWS_PER_APP))
+            evidence["sources"].append(review_source)
             evidence["reviews"] = sorted(
                 evidence["reviews"],
                 key=lambda item: (item["rating"] is None, item["rating"] or 9),
-            )[:20]
+            )[:MAX_REVIEWS_PER_APP]
         except Exception as error:
             evidence["errors"].append({"query": review_query, "error": str(error)})
         for label, query in (
             ("competitors", "{} app alternatives competitors".format(app_name)),
             ("alternatives", "how do people solve {} without an app".format(app_name)),
         ):
+            if pages_opened >= MAX_RESEARCH_PAGES:
+                break
             try:
                 evidence[label].extend(_search_records(query, searcher(query)))
+                pages_opened += 1
             except Exception as error:
                 evidence["errors"].append({"query": query, "error": str(error)})
+        evidence["competitors"] = evidence["competitors"][:MAX_COMPETITORS]
     return evidence

@@ -37,3 +37,16 @@ def validate_assessment(result: Dict[str, Any]) -> None:
             raise ValueError("Assessment score must be an integer from 1 to 10: {}".format(field))
     if result["recommendation"] not in RECOMMENDATIONS:
         raise ValueError("Invalid recommendation: {}".format(result["recommendation"]))
+    score = result["final_score"]
+    expected_recommendation = (
+        "PASS" if score <= 3 else
+        "INVESTIGATE_FURTHER" if score <= 5 else
+        "PROMISING" if score <= 7 else
+        "STRONG_OPPORTUNITY"
+    )
+    if result["recommendation"] != expected_recommendation:
+        raise ValueError(
+            "Recommendation does not match final_score band: {} should be {}".format(
+                score, expected_recommendation
+            )
+        )

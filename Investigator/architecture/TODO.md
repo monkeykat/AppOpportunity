@@ -5,17 +5,17 @@ Architecture source: `phase_2_app_investigator_design.rtf`
 ## Scope and Constraints
 
 - [x] Keep all Phase 2 work in the `Investigator` folder.
-- [ ] Preserve every file and database in `Scout` exactly as-is.
-- [ ] Do not import Phase 1 Python modules at runtime.
-- [ ] Do not read from, write to, migrate, or extend the Phase 1 database.
+- [x] Preserve every file and database in `Scout` exactly as-is.
+- [x] Do not import Phase 1 Python modules at runtime.
+- [x] Do not read from, write to, migrate, or extend the Phase 1 database.
 - [x] Recreate any required support modules inside `Investigator`.
 - [x] Use a separate Phase 2 SQLite database, `app_investigator.db`.
 - [x] Define an explicit, one-way handoff for copying Phase 1 opportunity data into the Phase 2 database.
-- [ ] Keep the MVP dependency set minimal: Python, SQLite, Ollama, and Playwright.
-- [ ] Do not build a frontend.
-- [ ] Do not build a complex multi-agent system.
-- [ ] Process exactly one opportunity per run.
-- [ ] Ensure an app can have only one investigation.
+- [x] Keep the MVP dependency set minimal: Python, SQLite, Ollama, and Playwright.
+- [x] Do not build a frontend.
+- [x] Do not build a complex multi-agent system.
+- [x] Process exactly one opportunity per run.
+- [x] Ensure an app can have only one investigation.
 
 ## Project Setup
 
@@ -105,4 +105,16 @@ Architecture source: `phase_2_app_investigator_design.rtf`
 - [x] Run a dry or mocked investigation without external web or Ollama calls.
 - [x] Run an end-to-end investigation against a controlled test record when dependencies are available.
 - [x] Confirm no file under `Scout` changes during Phase 2 setup, handoff, or execution.
-- [ ] Confirm Phase 1 behavior and database records remain intact by comparing the Phase 1 tree and database before and after Phase 2 operations.
+- [x] Confirm Phase 1 behavior and database records remain intact by comparing the Phase 1 tree and database before and after Phase 2 operations.
+
+## Phase 2.1 Quality Improvements
+
+- [x] Add additive `raw_reviews`, `raw_competitors`, and `raw_alternatives` fields to `investigations`.
+- [x] Preserve bounded raw evidence samples when saving completed investigations.
+- [x] Add centralized research limits for reviews, competitors, search results, and pages.
+- [x] Continue bounded search research when an opportunity has no URL.
+- [x] Add structured complaint-pattern analysis output.
+- [x] Add explicit evidence-versus-interpretation fields or prompt structure.
+- [x] Add strongest-argument-against reasoning to the final assessment.
+- [x] Improve score calibration and require explanations for intermediate scores.
+- [x] Add simple retry handling for existing `FAILED` or interrupted `IN_PROGRESS` investigations.

@@ -5,6 +5,7 @@ from typing import Any, Callable, Dict, Optional
 from database import (
     create_investigation,
     init_database,
+    recover_interrupted_investigations,
     save_investigation_result,
     select_next_opportunity,
     update_investigation_status,
@@ -22,13 +23,14 @@ ASSESSMENT_SCHEMA = {
         "app_analysis", "user_analysis", "complaint_analysis",
         "competitor_analysis", "alternative_analysis", "build_difficulty",
         "proprietary_dependency", "market_potential", "competition_level",
-        "final_score", "recommendation", "summary",
+        "final_score", "recommendation", "summary", "strongest_argument_against",
     ],
     "properties": {
         field: {"type": "string", "minLength": 1}
         for field in (
             "app_analysis", "user_analysis", "complaint_analysis",
             "competitor_analysis", "alternative_analysis", "summary",
+            "strongest_argument_against",
         )
     },
     "additionalProperties": False,
@@ -54,10 +56,20 @@ def analyze_with_ollama(
     """Ask Ollama for the structured assessment required by the database."""
     prompt = """You are evaluating whether building an alternative to an app is worthwhile.
 Use only the supplied evidence. Be conservative when evidence is missing and do not invent facts.
+Keep observed evidence separate from interpretation: describe concrete signals first,
+then explain what those signals may indicate. In complaint_analysis, distinguish
+repeated patterns from isolated complaints and mention which issues appear solvable.
+Actively search for reasons not to pursue the opportunity. Strong opportunities should be rare.
+Scores of 8 or higher require strong evidence of demand, repeated solvable problems,
+an achievable product, and no overwhelming proprietary or competitive barrier.
+Do not return bare scores. Explain every score in the related narrative field:
+explain build_difficulty and proprietary_dependency in app_analysis, market_potential in user_analysis,
+competition_level in competitor_analysis, and final_score in summary.
+Use the available evidence to justify each score and state uncertainty when evidence is limited.
 Return JSON with exactly these fields:
 app_analysis, user_analysis, complaint_analysis, competitor_analysis,
 alternative_analysis, build_difficulty, proprietary_dependency, market_potential,
-competition_level, final_score, recommendation, summary.
+competition_level, final_score, recommendation, summary, strongest_argument_against.
 The five score fields must be integers from 1 to 10. Recommendation must be one of
 PASS, INVESTIGATE_FURTHER, PROMISING, STRONG_OPPORTUNITY.
 Interpret final_score bands as 1-3 PASS, 4-5 INVESTIGATE_FURTHER, 6-7 PROMISING, 8-10 STRONG_OPPORTUNITY.
@@ -77,17 +89,28 @@ def run_one_investigation(
 ) -> bool:
     """Run exactly one opportunity and return whether work was completed."""
     init_database(database_path)
+    recover_interrupted_investigations(database_path)
     opportunity = select_next_opportunity(database_path)
     if opportunity is None:
         print("No uninvestigated opportunities available.")
         return False
 
-    investigation_id = create_investigation(opportunity["app_id"], database_path)
+    investigation_id = opportunity.get("investigation_id")
+    if investigation_id is None:
+        investigation_id = create_investigation(opportunity["app_id"], database_path)
     update_investigation_status(investigation_id, "IN_PROGRESS", database_path)
     print("Investigating {} (score {})".format(opportunity.get("app_name") or opportunity["app_id"], opportunity["score"]))
     try:
         evidence = research(opportunity)
         result = analyze(opportunity, evidence)
+        strongest_argument = result.pop("strongest_argument_against", "")
+        if strongest_argument:
+            result["summary"] = "{} Strongest argument against: {}".format(
+                result["summary"].rstrip(), strongest_argument.strip()
+            )
+        result["raw_reviews"] = evidence.get("reviews", [])
+        result["raw_competitors"] = evidence.get("competitors", [])
+        result["raw_alternatives"] = evidence.get("alternatives", [])
         save_investigation_result(investigation_id, result, database_path)
     except Exception as error:
         update_investigation_status(investigation_id, "FAILED", database_path, str(error))

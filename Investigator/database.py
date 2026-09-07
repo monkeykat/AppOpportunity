@@ -1,5 +1,6 @@
 """SQLite schema and operations owned by Phase 2."""
 
+import json
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
@@ -57,6 +58,9 @@ def init_database(database_path: Optional[Path] = None) -> None:
                 complaint_analysis TEXT,
                 competitor_analysis TEXT,
                 alternative_analysis TEXT,
+                raw_reviews TEXT,
+                raw_competitors TEXT,
+                raw_alternatives TEXT,
                 build_difficulty INTEGER CHECK (build_difficulty BETWEEN 1 AND 10),
                 proprietary_dependency INTEGER CHECK (proprietary_dependency BETWEEN 1 AND 10),
                 market_potential INTEGER CHECK (market_potential BETWEEN 1 AND 10),
@@ -70,6 +74,12 @@ def init_database(database_path: Optional[Path] = None) -> None:
             );
             """
         )
+        existing_columns = {
+            row[1] for row in connection.execute("PRAGMA table_info(investigations)")
+        }
+        for column in ("raw_reviews", "raw_competitors", "raw_alternatives"):
+            if column not in existing_columns:
+                connection.execute("ALTER TABLE investigations ADD COLUMN {} TEXT".format(column))
 
 
 def select_next_opportunity(database_path: Optional[Path] = None) -> Optional[Dict[str, Any]]:
@@ -77,10 +87,11 @@ def select_next_opportunity(database_path: Optional[Path] = None) -> Optional[Di
     with get_connection(database_path) as connection:
         row = connection.execute(
             """
-            SELECT opportunities.*
+                 SELECT opportunities.*, investigations.id AS investigation_id,
+                     investigations.status AS investigation_status
             FROM opportunities
             LEFT JOIN investigations ON opportunities.app_id = investigations.app_id
-            WHERE investigations.id IS NULL
+                 WHERE investigations.id IS NULL OR investigations.status = 'FAILED'
             ORDER BY opportunities.score DESC, opportunities.id ASC
             LIMIT 1
             """
@@ -116,6 +127,20 @@ def update_investigation_status(
             raise ValueError("Investigation {} does not exist".format(investigation_id))
 
 
+def recover_interrupted_investigations(database_path: Optional[Path] = None) -> int:
+    """Mark abandoned in-progress runs failed so the normal retry policy can handle them."""
+    with get_connection(database_path) as connection:
+        cursor = connection.execute(
+            """
+            UPDATE investigations
+            SET status = 'FAILED', error = ?
+            WHERE status = 'IN_PROGRESS'
+            """,
+            ("Recovered interrupted investigation; eligible for retry.",),
+        )
+        return cursor.rowcount
+
+
 def save_investigation_result(
     investigation_id: int,
     result: Dict[str, Any],
@@ -131,6 +156,9 @@ def save_investigation_result(
         "complaint_analysis",
         "competitor_analysis",
         "alternative_analysis",
+        "raw_reviews",
+        "raw_competitors",
+        "raw_alternatives",
         "build_difficulty",
         "proprietary_dependency",
         "market_potential",
@@ -139,7 +167,10 @@ def save_investigation_result(
         "recommendation",
         "summary",
     )
-    values = [result.get(field) for field in fields]
+    values = [
+        json.dumps(result.get(field, [])) if field.startswith("raw_") else result.get(field)
+        for field in fields
+    ]
     values.extend(("COMPLETE", datetime.now(timezone.utc).isoformat(), investigation_id))
     with get_connection(database_path) as connection:
         cursor = connection.execute(
@@ -147,6 +178,7 @@ def save_investigation_result(
             UPDATE investigations
             SET app_analysis = ?, user_analysis = ?, complaint_analysis = ?,
                 competitor_analysis = ?, alternative_analysis = ?,
+                raw_reviews = ?, raw_competitors = ?, raw_alternatives = ?,
                 build_difficulty = ?, proprietary_dependency = ?,
                 market_potential = ?, competition_level = ?, final_score = ?,
                 recommendation = ?, summary = ?, status = ?, investigated_at = ?, error = NULL
