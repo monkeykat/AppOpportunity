@@ -3,6 +3,7 @@
 import argparse
 import time
 
+from config import config
 from scout import ScoutApp
 
 
@@ -27,18 +28,40 @@ def main() -> None:
     if args.interval < 0:
         raise ValueError("--interval must be zero or greater")
 
+    duration = config['continuous_run_duration_seconds']
+    if duration < 0:
+        raise ValueError("CONTINUOUS_RUN_DURATION_SECONDS must be zero or greater")
+
     app = ScoutApp()
-    print(f"Continuous mode enabled; waiting {args.interval} seconds between runs.")
+    deadline = time.monotonic() + duration if duration else None
+    if deadline is None:
+        print(f"Continuous mode enabled; waiting {args.interval} seconds between runs.")
+    else:
+        print(
+            f"Continuous mode enabled for {duration} seconds; "
+            f"waiting {args.interval} seconds between runs."
+        )
 
     try:
         while True:
+            if deadline is not None and time.monotonic() >= deadline:
+                print("Continuous run duration reached; stopping before the next iteration.")
+                break
+
             try:
                 app.run()
             except Exception as error:
                 print(f"Scout iteration failed: {error}")
 
+            if deadline is not None and time.monotonic() >= deadline:
+                print("Continuous run duration reached; stopping after the completed iteration.")
+                break
+
             print(f"Waiting {args.interval} seconds before the next iteration...")
-            time.sleep(args.interval)
+            wait_seconds = args.interval
+            if deadline is not None:
+                wait_seconds = min(wait_seconds, max(0, deadline - time.monotonic()))
+            time.sleep(wait_seconds)
     except KeyboardInterrupt:
         print("\nContinuous Scout stopped.")
 

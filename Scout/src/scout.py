@@ -387,9 +387,9 @@ Offers In-App Purchases: {app_data.get('offers_in_app_purchases', False)}
         if score >= self.opportunity_threshold:
             # Save as opportunity
             self.cursor.execute('''
-                INSERT INTO opportunities (app_id, score, reason)
-                VALUES (?, ?, ?)
-            ''', (app_id, score, result.get('reason', 'No reason provided')))
+                INSERT INTO opportunities (app_id, app_name, score, reason)
+                VALUES (?, ?, ?, ?)
+            ''', (app_id, app_data.get('name'), score, result.get('reason', 'No reason provided')))
             self.conn.commit()
             print(f"Opportunity: {app_data.get('name', 'Unknown')} (score {score})")
             return True

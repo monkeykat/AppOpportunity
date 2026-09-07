@@ -69,11 +69,25 @@ def init_database() -> None:
         CREATE TABLE IF NOT EXISTS opportunities (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             app_id INTEGER NOT NULL UNIQUE,
+            app_name TEXT,
             score INTEGER NOT NULL,
             reason TEXT NOT NULL,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (app_id) REFERENCES apps(id)
         )
+    ''')
+
+    opportunity_columns = {
+        row[1] for row in cursor.execute('PRAGMA table_info(opportunities)')
+    }
+    if 'app_name' not in opportunity_columns:
+        cursor.execute('ALTER TABLE opportunities ADD COLUMN app_name TEXT')
+    cursor.execute('''
+        UPDATE opportunities
+        SET app_name = (
+            SELECT apps.name FROM apps WHERE apps.id = opportunities.app_id
+        )
+        WHERE app_name IS NULL
     ''')
     
     conn.commit()
@@ -94,7 +108,11 @@ def get_niches_from_file() -> List[str]:
         return []
     
     with open(niches_file, 'r') as f:
-        niches = [line.strip() for line in f if line.strip()]
+        niches = [
+            line.strip()
+            for line in f
+            if line.strip() and not line.strip().startswith('#')
+        ]
     
     return niches
 

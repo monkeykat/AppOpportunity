@@ -57,6 +57,13 @@ different delay with `--interval`:
 python run_continuous.py --interval 60
 ```
 
+Set `CONTINUOUS_RUN_DURATION_SECONDS` in the shared workspace `.env` file to
+limit continuous mode. The current iteration is always allowed to finish;
+`0` means run until interrupted:
+```env
+CONTINUOUS_RUN_DURATION_SECONDS=3600
+```
+
 Press `Ctrl+C` to stop continuous mode.
 
 ## Project Structure
@@ -81,7 +88,8 @@ The application uses SQLite with three tables:
 
 ## Configuration
 
-See `.env.example` for available configuration options.
+The shared workspace `.env` file supports `SCOUT_OLLAMA_MODEL` for the Scout
+model and `OLLAMA_URL` for the Ollama server.
 
 ## License
 
