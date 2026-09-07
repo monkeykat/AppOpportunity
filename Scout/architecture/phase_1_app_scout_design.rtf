@@ -1,0 +1,1248 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\froman\fcharset0 Times-Bold;\f2\fmodern\fcharset0 Courier;
+\f3\fmodern\fcharset0 Courier-Bold;\f4\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid1\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid201\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid301\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid401\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid5}
+{\list\listtemplateid6\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid501\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid6}
+{\list\listtemplateid7\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid601\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid7}
+{\list\listtemplateid8\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid701\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid8}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}{\listoverride\listid7\listoverridecount0\ls7}{\listoverride\listid8\listoverridecount0\ls8}}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Phase 1 MVP: Google Play App Scout\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\fs36 \cf0 Goal\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Build a simple Python application that uses a local Ollama model to autonomously search Google Play for potentially interesting niche apps.\
+The application should:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Pick a niche to explore.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Search Google Play for apps in that niche.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Progress through search results instead of repeatedly examining the same top apps.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Save discovered apps to a local SQLite database.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Remember which apps have already been seen.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Remember which searches/niches have already been explored.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Use a local Ollama model to decide whether an app looks potentially interesting by feeding it the app's available basic information and metadata.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	8	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Save only potentially interesting apps as opportunities.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	9	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Run repeatedly without constantly doing the same work.\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 There is 
+\f1\b no frontend
+\f0\b0 .\
+The SQLite database is the output.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Technology\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Use:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls2\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Python\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 SQLite\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Ollama\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Playwright\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 Keep dependencies minimal.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Database\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Use one SQLite database:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+app_scout.db\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Only use three tables.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 1. 
+\f3\fs39 niches
+\f1\fs36 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Tracks areas being explored.\
+Fields:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+id\
+\
+name\
+\
+status\
+\
+queries\
+\
+current_query_index\
+\
+current_offset\
+\
+last_searched\
+\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\b\fs28 \cf0 Field descriptions\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f3\fs30\fsmilli15210 \cf0 \strokec2 queries
+\f1\fs28 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Stores the Ollama-generated search queries for the niche as JSON.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+[\
+  "fishing",\
+  "fishing log",\
+  "fish tracker",\
+  "angler journal",\
+  "fishing forecast"\
+]\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Queries are generated once and reused until exhausted.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f3\b\fs30\fsmilli15210 \cf0 \strokec2 current_query_index
+\f1\fs28 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Tracks which query is currently being searched.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+0 = fishing\
+1 = fishing log\
+2 = fish tracker\
+3 = angler journal\
+4 = fishing forecast\
+\
+current_query_index = 2\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 The next search will continue with:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+fish tracker\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f3\b\fs30\fsmilli15210 \cf0 \strokec2 current_offset
+\f0\b0\fs24 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 Tracks how far through the results the application has progressed.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+current_offset = 40\
+\
+Google Play may use dynamically loaded or infinite-scroll search results.\
+\
+current_offset represents the number of results that have already been\
+processed for the current search query.\
+\
+Do not assume Google Play provides a URL parameter that allows the\
+application to jump directly to a specific offset.\
+\
+Use Playwright to load search results and continue beyond the previously\
+processed results. The exact implementation should depend on the current\
+behavior of the Google Play website.\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Meaning the application has already processed approximately the first 40 results for the current query.\
+The next run should continue searching for additional results instead of starting over.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f3\b\fs30\fsmilli15210 \cf0 \strokec2 last_searched
+\f0\b0\fs24 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 Stores the last time the niche was processed.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+2026-09-06 14:30:00\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 This helps prevent the system from repeatedly selecting the same niche.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+1 | Fishing Apps | ACTIVE\
+\
+2 | Amateur Astronomy | ACTIVE\
+\
+3 | Beekeeping | EXHAUSTED\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Status values:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+ACTIVE\
+\
+EXHAUSTED\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Seed the database with approximately 20 interesting niches. The user will add additional niches, which will need to be searched once added.\
+Examples:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Fishing\
+\
+Amateur Astronomy\
+\
+Beekeeping\
+\
+Gardening\
+\
+Bird Watching\
+\
+Woodworking\
+\
+RV Travel\
+\
+Ham Radio\
+\
+Home Inspection\
+\
+Inventory Management\
+\
+Collecting\
+\
+Board Games\
+\
+Hiking\
+\
+Camping\
+\
+Boating\
+\
+Automotive\
+\
+Music Practice\
+\
+Photography\
+\
+Aviation\
+\
+Field Work\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 2. 
+\f3\fs39 apps
+\f1\fs36 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Tracks every app the system has encountered.\
+Fields:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+id\
+\
+package_name\
+\
+name\
+\
+developer\
+\
+url\
+\
+niche_id\
+\
+description\
+\
+category\
+\
+rating\
+\
+review_count\
+\
+install_count\
+\
+last_updated\
+\
+price\
+\
+contains_ads\
+\
+offers_in_app_purchases\
+\
+first_seen\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f2\fs26 \cf0 package_name
+\f0\fs24  must be unique.\
+If an app already exists in the database, do not process or evaluate it again.\
+The app should still remain in the database even if Ollama determines it is not an opportunity.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 3. 
+\f3\fs39 opportunities
+\f1\fs36 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Contains apps Ollama thinks are potentially interesting.\
+Fields:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+id\
+\
+app_id\
+\
+score\
+\
+reason\
+\
+created_at\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 An app should only have one opportunity record.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Main Loop\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Create a TODO list first. Use the 
+\f2\fs26 TODO.md
+\f0\fs24  file in the workspace.\
+Use this file to keep track of what has and has not been done. Update it as necessary, keep notes, and mark each task as completed when finished.\
+The application should run the following loop:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+SELECT NICHE\
+    
+\f4 \uc0\u8595 
+\f2 \
+GET OR CREATE SEARCH QUERIES\
+    
+\f4 \uc0\u8595 
+\f2 \
+SELECT CURRENT QUERY\
+    
+\f4 \uc0\u8595 
+\f2 \
+SEARCH GOOGLE PLAY\
+    
+\f4 \uc0\u8595 
+\f2 \
+GET NEW RESULTS\
+    
+\f4 \uc0\u8595 
+\f2 \
+SKIP APPS ALREADY IN DATABASE\
+    
+\f4 \uc0\u8595 
+\f2 \
+SAVE NEW APPS AND METADATA\
+    
+\f4 \uc0\u8595 
+\f2 \
+ASK OLLAMA TO EVALUATE EACH NEW APP\
+    
+\f4 \uc0\u8595 
+\f2 \
+IF INTERESTING 
+\f4 \uc0\u8594 
+\f2  SAVE AS OPPORTUNITY\
+    
+\f4 \uc0\u8595 
+\f2 \
+UPDATE SEARCH PROGRESS\
+    
+\f4 \uc0\u8595 
+\f2 \
+EXIT
+\f0\fs24 \
+\
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Selecting a Niche\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Choose a niche that is not exhausted.\
+Prefer niches that have been explored the least recently.\
+Do not constantly return to the same niche.\
+Use:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+SELECT *\
+FROM niches\
+WHERE status = 'ACTIVE'\
+ORDER BY\
+    CASE WHEN last_searched IS NULL THEN 0 ELSE 1 END,\
+    last_searched ASC\
+LIMIT 1;\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 \
+After processing the niche, update:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+last_searched\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Niches can continue to be added by the user.\
+New niches should automatically be included in future searches.\
+Keep this simple.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Searching Google Play\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Use Playwright to search the public Google Play website.\
+Example search:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+https://play.google.com/store/search?q=fishing&c=apps\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Extract apps from the search results.\
+For each new app, collect as much of the following publicly available information as possible:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Name\
+\
+Developer\
+\
+Package Name\
+\
+URL\
+\
+Description\
+\
+Category\
+\
+Rating\
+\
+Review Count\
+\
+Install Count\
+\
+Last Updated\
+\
+Price\
+\
+Contains Ads\
+\
+Offers In-App Purchases\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 \
+Some information may not be available directly from the search results.\
+The application may:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls3\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Find the app through Google Play search.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Open the individual app page.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Extract the available metadata.\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 If package name is unavailable, derive or extract it from the app URL when possible.\
+Use conservative request rates.\
+Do not bypass CAPTCHAs, access controls, or anti-bot protections.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Avoid Repeatedly Searching the Same Apps\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 This is important.\
+The program should not always examine only the first results.\
+For each niche, generate several related search terms.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Fishing\
+\
+fishing\
+\
+fishing log\
+\
+fish tracker\
+\
+angler journal\
+\
+fishing forecast\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Search queries should be generated once and stored in:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+niches.queries\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 The application tracks:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+current_query_index\
+\
+current_offset\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Fishing\
+\
+Current Query:\
+fish tracker\
+\
+Current Offset:\
+40\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 The next time the application runs, it should continue beyond the first 40 results.\
+It should not restart from the beginning.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Query Generation\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Use Ollama to generate a user-defined number of search terms for the niche.\
+Example prompt:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Generate [USER DEFINED NUMBER] different Google Play Store search queries for finding Android apps related to this niche:\
+\
+FISHING\
+\
+Return only a JSON array of search queries.\
+\
+The queries should explore different types of apps within the niche.\
+\
+Avoid repeating the exact same concept.\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Example result:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+[\
+  "fishing log",\
+  "fish tracker",\
+  "angler journal",\
+  "fishing forecast",\
+  "catch tracker"\
+]\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Do not generate new queries every time.\
+Generate the queries once.\
+Store them in:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+niches.queries\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 The application should work through the queries sequentially.\
+When one query is exhausted:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+current_query_index += 1\
+\
+current_offset = 0\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Exhausting a Search Query\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 A search query is exhausted when:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls4\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 It reaches the configured result limit.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Google Play no longer returns additional results.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Or the application repeatedly finds no new apps.\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 When a query is exhausted:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+current_query_index += 1\
+\
+current_offset = 0\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 The application then moves to the next query.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Exhausting a Niche\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 A niche becomes exhausted when:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls5\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 All generated search queries have been searched.\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Each query has reached the configured result limit.\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Or searches stop finding meaningful numbers of new apps.\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 Then:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+status = EXHAUSTED\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 The system moves on.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Fishing 
+\f4 \uc0\u8594 
+\f2  EXHAUSTED\
+\
+Next:\
+\
+Amateur Astronomy\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 App Evaluation\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 For every 
+\f1\b new app
+\f0\b0 , ask Ollama whether it looks potentially interesting as a possible software opportunity.\
+Use only the information collected from Google Play.\
+Do not perform additional research.\
+Use a prompt similar to:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Does this Android app look potentially interesting as a possible software opportunity?\
+\
+We are looking for:\
+\
+- Niche apps\
+- Apps solving a specific problem\
+- Apps with a clearly defined audience\
+- Apps that might potentially be improved upon\
+- Apps with low or mediocre user ratings relative to their apparent demand\
+- Apps that show evidence of meaningful demand\
+- Apps that may be outdated or neglected\
+\
+Do not deeply research the app.\
+\
+Use only the information provided.\
+\
+Consider:\
+\
+- How specific the niche is\
+- Whether the app solves a clear problem\
+- Whether there appears to be meaningful demand\
+- The app's rating\
+- The number of reviews\
+- The install count\
+- When the app was last updated\
+- Whether the app appears neglected or outdated\
+- Whether the app appears to have potential for improvement\
+\
+Return only valid JSON in this format:\
+\
+\{\
+    "score": 1-10,\
+    "reason": "Short explanation"\
+\}\
+\
+App Information:\
+\
+Name: \{name\}\
+\
+Developer: \{developer\}\
+\
+Category: \{category\}\
+\
+Description:\
+\
+\{description\}\
+\
+Rating: \{rating\}\
+\
+Review Count: \{review_count\}\
+\
+Install Count: \{install_count\}\
+\
+Last Updated: \{last_updated\}\
+\
+Price: \{price\}\
+\
+Contains Ads: \{contains_ads\}\
+\
+Offers In-App Purchases: \{offers_in_app_purchases\}\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 \
+Expected response:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+\{\
+  "score": 8,\
+  "reason": "Specific niche audience with evidence of demand. The low rating and old update date suggest potential for a better alternative."\
+\}\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Opportunity Threshold\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 If:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+score >= 7\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Save the app to the 
+\f2\fs26 opportunities
+\f0\fs24  table.\
+Otherwise, do nothing.\
+The app is still saved in the 
+\f2\fs26 apps
+\f0\fs24  table so it is never evaluated again.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Running the Application\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 The application can be run manually:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+python scout.py\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Each run should:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls6\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Select one active niche.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Generate search queries if they do not already exist.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Select the current search query.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Search Google Play.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Continue from the saved search offset.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Process a limited number of results.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Ignore previously discovered apps.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	8	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Collect available metadata for new apps.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	9	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Save new apps to SQLite.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	10	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Evaluate new apps with Ollama.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	11	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Save promising apps as opportunities.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	12	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Update search progress.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	13	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Update 
+\f2\fs26 last_searched
+\f0\fs24 .\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	14	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Exit.\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 This makes the POC easy to test.\
+Later, it can run continuously:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+RUN\
+  
+\f4 \uc0\u8595 
+\f2 \
+WAIT\
+  
+\f4 \uc0\u8595 
+\f2 \
+RUN\
+  
+\f4 \uc0\u8595 
+\f2 \
+WAIT\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Continuous autonomous operation is 
+\f1\b not required for Phase 1
+\f0\b0 .\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Configuration\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Use a simple configuration file or environment variables:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+OLLAMA_MODEL=...\
+\
+MAX_RESULTS_PER_QUERY=100\
+\
+APPS_PER_RUN=20\
+\
+SEARCH_QUERY_COUNT=10\
+\
+OPPORTUNITY_THRESHOLD=7\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 \
+All configuration should be centralized.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Important Rules\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 The application must:\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 1. Never evaluate the same app twice\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Check:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+package_name\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 If the app already exists:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+SKIP\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 2. Never restart searches from the beginning\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Track:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+current_query_index\
+\
+current_offset\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 3. Eventually move on from a search query\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 When a query is exhausted:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+current_query_index += 1\
+\
+current_offset = 0\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 4. Eventually move on from a niche\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 When all queries have been completed:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+status = EXHAUSTED\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 5. Use available metadata when evaluating an app\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Ollama should receive all available collected metadata.\
+At minimum:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Name\
+\
+Developer\
+\
+Description\
+\
+Category\
+\
+Rating\
+\
+Review Count\
+\
+Install Count\
+\
+Last Updated\
+\
+Price\
+\
+Contains Ads\
+\
+Offers In-App Purchases
+\f0\fs24 \
+\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 6. Keep everything local\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Use:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Ollama\
+\
+SQLite\
+\
+Python\
+\
+Playwright\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\b\fs36 \cf0 7. Keep it simple\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Do 
+\f1\b not
+\f0\b0  build:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls7\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 A frontend\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 FastAPI\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Docker\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 User accounts\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Authentication\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Multiple AI agents\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Complex scheduling\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Vector databases\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 RAG\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Microservices\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Advanced analytics\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 A complicated scoring system\
+\pard\pardeftab720\partightenfactor0
+\cf0 \strokec2 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Project Structure\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+app-scout/\
+\
+
+\f4 \uc0\u9500 \u9472 \u9472 
+\f2  scout.py\
+
+\f4 \uc0\u9500 \u9472 \u9472 
+\f2  database.py\
+
+\f4 \uc0\u9500 \u9472 \u9472 
+\f2  google_play.py\
+
+\f4 \uc0\u9500 \u9472 \u9472 
+\f2  ollama_client.py\
+
+\f4 \uc0\u9500 \u9472 \u9472 
+\f2  config.py\
+
+\f4 \uc0\u9492 \u9472 \u9472 
+\f2  app_scout.db\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 Keep the code small and understandable.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Definition of Done\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 The POC is complete when I can run:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+python scout.py\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 And it will:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls8\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Pick an active niche.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Generate search queries if necessary.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Search Google Play.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Continue beyond previously searched results.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Discover apps.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Ignore apps already discovered.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Collect available Google Play metadata.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	8	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Save new apps to SQLite.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	9	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Ask local Ollama whether new apps are interesting.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	10	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Use available metadata when evaluating the app.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	11	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Save interesting apps as opportunities.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	12	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Remember search progress.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	13	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Eventually exhaust a search query.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	14	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Eventually exhaust a niche.\
+\ls8\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	15	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Move to another niche.\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 I should then be able to open:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+app_scout.db\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 And run:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+SELECT\
+    apps.name,\
+    apps.developer,\
+    apps.rating,\
+    apps.review_count,\
+    apps.install_count,\
+    apps.last_updated,\
+    opportunities.score,\
+    opportunities.reason\
+FROM opportunities\
+JOIN apps ON opportunities.app_id = apps.id\
+ORDER BY opportunities.score DESC;\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f1\b\fs48 \cf0 Core Concept\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+NICHE\
+  
+\f4 \uc0\u8595 
+\f2 \
+GENERATE QUERIES\
+  
+\f4 \uc0\u8595 
+\f2 \
+SELECT QUERY\
+  
+\f4 \uc0\u8595 
+\f2 \
+SEARCH GOOGLE PLAY\
+  
+\f4 \uc0\u8595 
+\f2 \
+CONTINUE FROM SAVED OFFSET\
+  
+\f4 \uc0\u8595 
+\f2 \
+NEW APP?\
+  
+\f4 \uc0\u8595 
+\f2 \
+YES\
+  
+\f4 \uc0\u8595 
+\f2 \
+COLLECT METADATA\
+  
+\f4 \uc0\u8595 
+\f2 \
+SAVE APP\
+  
+\f4 \uc0\u8595 
+\f2 \
+ASK OLLAMA\
+  
+\f4 \uc0\u8595 
+\f2 \
+INTERESTING?\
+  
+\f4 \uc0\u8595 
+\f2 \
+YES\
+  
+\f4 \uc0\u8595 
+\f2 \
+SAVE OPPORTUNITY\
+  
+\f4 \uc0\u8595 
+\f2 \
+UPDATE PROGRESS\
+}
