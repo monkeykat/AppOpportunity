@@ -84,12 +84,15 @@ src/
 The application uses SQLite with three tables:
 - `niches` - Tracks explored niches and search progress
 - `apps` - Tracks all discovered apps
-- `opportunities` - Stores apps marked as interesting
+- `app_evaluations` - Stores every valid Ollama score and reason
+- `opportunities` - Stores the evaluated apps meeting `OPPORTUNITY_THRESHOLD`
 
 ## Configuration
 
 The shared workspace `.env` file supports `SCOUT_OLLAMA_MODEL` for the Scout
-model and `OLLAMA_URL` for the Ollama server.
+model and `OLLAMA_URL` for the Ollama server. `APPS_PER_RUN` limits the number
+of search results processed in one run, regardless of how many become
+opportunities.
 
 ## License
 

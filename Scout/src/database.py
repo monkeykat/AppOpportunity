@@ -77,6 +77,18 @@ def init_database() -> None:
         )
     ''')
 
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS app_evaluations (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            app_id INTEGER NOT NULL UNIQUE,
+            app_name TEXT,
+            score INTEGER NOT NULL,
+            reason TEXT NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (app_id) REFERENCES apps(id)
+        )
+    ''')
+
     opportunity_columns = {
         row[1] for row in cursor.execute('PRAGMA table_info(opportunities)')
     }
@@ -88,6 +100,11 @@ def init_database() -> None:
             SELECT apps.name FROM apps WHERE apps.id = opportunities.app_id
         )
         WHERE app_name IS NULL
+    ''')
+    cursor.execute('''
+        INSERT OR IGNORE INTO app_evaluations (app_id, app_name, score, reason, created_at)
+        SELECT app_id, app_name, score, reason, created_at
+        FROM opportunities
     ''')
     
     conn.commit()

@@ -179,10 +179,10 @@ Avoid repeating the exact same concept.
         current_index = niche['current_query_index']
         current_offset = niche['current_offset']
         
-        new_apps_count = 0
+        processed_apps_count = 0
         
         # Search until we've processed enough apps or exhausted the query
-        while new_apps_count < self.apps_per_run and current_index < len(queries):
+        while processed_apps_count < self.apps_per_run and current_index < len(queries):
             if current_offset >= self.max_results_per_query:
                 current_index += 1
                 current_offset = 0
@@ -191,7 +191,7 @@ Avoid repeating the exact same concept.
             query = queries[current_index]
             remaining_query_results = self.max_results_per_query - current_offset
             batch_limit = min(
-                self.apps_per_run - new_apps_count,
+                self.apps_per_run - processed_apps_count,
                 remaining_query_results,
             )
 
@@ -211,8 +211,9 @@ Avoid repeating the exact same concept.
             
             # Process each app
             for app_data in apps:
-                if self._process_app(app_data, niche['id'], queries[current_index]):
-                    new_apps_count += 1
+                self._process_app(app_data, niche['id'], queries[current_index])
+
+            processed_apps_count += len(apps)
             
             # Update offset
             current_offset += len(apps)
@@ -232,7 +233,7 @@ Avoid repeating the exact same concept.
         ''', (current_index, current_offset, niche['id']))
         self.conn.commit()
         
-        return new_apps_count
+        return processed_apps_count
     
     def _process_app(self, app_data: Dict, niche_id: int, current_query: str) -> bool:
         """Process a single app.
@@ -343,6 +344,19 @@ Consider:
 - Whether the app appears neglected or outdated
 - Whether the app appears to have potential for improvement
 
+Use this scoring rubric:
+
+- 1-3: Poor opportunity; little evidence of demand or improvement potential
+- 4-5: Weak or uncertain opportunity; some relevant signals but major concerns
+- 6: Some promise, but the evidence is insufficient or important risks remain
+- 7: Potentially interesting; credible demand and improvement potential
+- 8: Strong opportunity; several strong signals and manageable risks
+- 9-10: Exceptional and rare; compelling evidence across demand and improvement potential
+
+Score the app based only on the evidence provided. Do not use 7 as a default.
+Use lower scores when the evidence is weak or missing, and reserve 9-10 for
+exceptional cases.
+
 Return only valid JSON in this format:
 
 {{
@@ -383,13 +397,24 @@ Offers In-App Purchases: {app_data.get('offers_in_app_purchases', False)}
             return False
         
         score = result.get('score', 0)
+        reason = result.get('reason', 'No reason provided')
+
+        if isinstance(score, bool) or not isinstance(score, int) or not 1 <= score <= 10:
+            print(f"Invalid evaluation score for {app_data.get('name', 'Unknown')}: {score!r}")
+            return False
+
+        self.cursor.execute('''
+            INSERT INTO app_evaluations (app_id, app_name, score, reason)
+            VALUES (?, ?, ?, ?)
+        ''', (app_id, app_data.get('name'), score, reason))
+        self.conn.commit()
         
         if score >= self.opportunity_threshold:
             # Save as opportunity
             self.cursor.execute('''
                 INSERT INTO opportunities (app_id, app_name, score, reason)
                 VALUES (?, ?, ?, ?)
-            ''', (app_id, app_data.get('name'), score, result.get('reason', 'No reason provided')))
+            ''', (app_id, app_data.get('name'), score, reason))
             self.conn.commit()
             print(f"Opportunity: {app_data.get('name', 'Unknown')} (score {score})")
             return True
@@ -466,8 +491,8 @@ Offers In-App Purchases: {app_data.get('offers_in_app_purchases', False)}
         print(f"Processing niche: {niche['name']}")
         
         # Search for apps
-        new_apps = self.search_niche(niche)
-        print(f"Found {new_apps} new apps")
+        processed_apps = self.search_niche(niche)
+        print(f"Processed {processed_apps} app result(s)")
         
         # Check if niche is exhausted
         if self.check_niche_exhausted(niche):
