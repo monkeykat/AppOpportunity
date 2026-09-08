@@ -57,11 +57,11 @@ different delay with `--interval`:
 python run_continuous.py --interval 60
 ```
 
-Set `CONTINUOUS_RUN_DURATION_SECONDS` in the shared workspace `.env` file to
+Set `SCOUT_CONTINUOUS_RUN_DURATION_SECONDS` in the shared workspace `.env` file to
 limit continuous mode. The current iteration is always allowed to finish;
 `0` means run until interrupted:
 ```env
-CONTINUOUS_RUN_DURATION_SECONDS=3600
+SCOUT_CONTINUOUS_RUN_DURATION_SECONDS=3600
 ```
 
 Press `Ctrl+C` to stop continuous mode.

@@ -32,7 +32,7 @@ def main() -> None:
 
     duration = config['continuous_run_duration_seconds']
     if duration < 0:
-        raise ValueError("CONTINUOUS_RUN_DURATION_SECONDS must be zero or greater")
+        raise ValueError("SCOUT_CONTINUOUS_RUN_DURATION_SECONDS must be zero or greater")
 
     deadline = time.monotonic() + duration if duration else None
     if deadline is None:

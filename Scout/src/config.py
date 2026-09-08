@@ -53,7 +53,7 @@ def load_config() -> dict:
         'max_install_count': int(max_install_count) if max_install_count else None,
         'request_delay_seconds': int(os.getenv('REQUEST_DELAY_SECONDS', '2')),
         'continuous_run_duration_seconds': int(
-            os.getenv('CONTINUOUS_RUN_DURATION_SECONDS', '0')
+            os.getenv('SCOUT_CONTINUOUS_RUN_DURATION_SECONDS', '0')
         ),
     }
 
