@@ -2,6 +2,7 @@
 
 import time
 import json
+import traceback
 from typing import List, Dict, Optional
 from pathlib import Path
 
@@ -9,6 +10,7 @@ from database import get_db_path, get_connection, init_database, seed_niches
 from config import config
 from ollama_client import OllamaClient
 from google_play import GooglePlayScraper
+from run_log import run_log
 
 
 class ScoutApp:
@@ -32,6 +34,9 @@ class ScoutApp:
         self.apps_per_run = config['apps_per_run']
         self.search_query_count = config['search_query_count']
         self.opportunity_threshold = config['opportunity_threshold']
+        self.max_app_rating = config['max_app_rating']
+        self.min_install_count = config['min_install_count']
+        self.max_install_count = config['max_install_count']
     
     def select_niche(self) -> Optional[Dict]:
         """Select the next niche to search.
@@ -267,7 +272,7 @@ Avoid repeating the exact same concept.
             details = self.scraper.get_app_details(package_name, app_data['url'])
             if details:
                 app_data.update(details)
-        
+
         # Save app to database
         self.cursor.execute('''
             INSERT INTO apps (
@@ -296,6 +301,26 @@ Avoid repeating the exact same concept.
         
         app_id = self.cursor.lastrowid
         print(f"Found app: {app_data['name']}")
+
+        if self._matches_automatic_opportunity(app_data):
+            rating = float(app_data['rating'])
+            install_count = int(app_data['install_count'])
+            reason = (
+                "Automatic opportunity rule matched: "
+                f"rating {rating} < {self.max_app_rating} and "
+                f"install count {install_count} is between "
+                f"{self.min_install_count} and {self.max_install_count}."
+            )
+            self.cursor.execute('''
+                INSERT INTO opportunities (app_id, app_name, score, reason)
+                VALUES (?, ?, ?, ?)
+            ''', (app_id, app_data.get('name'), self.opportunity_threshold, reason))
+            self.conn.commit()
+            print(
+                f"Automatic opportunity: {app_data['name']} "
+                f"(rating {rating}, installs {install_count})"
+            )
+            return True
         
         # Evaluate with Ollama
         is_interesting = self._evaluate_app(app_data, app_id)
@@ -304,6 +329,26 @@ Avoid repeating the exact same concept.
             return True
         
         return False
+
+    def _matches_automatic_opportunity(self, app_data: Dict) -> bool:
+        """Return whether an app meets the configured automatic opportunity rule."""
+        if (
+            self.max_app_rating is None
+            or self.min_install_count is None
+            or self.max_install_count is None
+        ):
+            return False
+
+        try:
+            rating = float(app_data.get('rating'))
+            install_count = int(app_data.get('install_count'))
+        except (TypeError, ValueError):
+            return False
+
+        return (
+            rating < self.max_app_rating
+            and self.min_install_count <= install_count <= self.max_install_count
+        )
     
     def _evaluate_app(self, app_data: Dict, app_id: int) -> bool:
         """Evaluate an app using Ollama.
@@ -508,4 +553,9 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    with run_log("single"):
+        try:
+            main()
+        except Exception:
+            traceback.print_exc()
+            raise

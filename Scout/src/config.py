@@ -36,6 +36,9 @@ def load_workspace_env() -> None:
 def load_config() -> dict:
     """Load configuration from environment variables and defaults."""
     load_workspace_env()
+    max_app_rating = os.getenv('MAX_APP_RATING', '').strip()
+    min_install_count = os.getenv('MIN_INSTALL_COUNT', '').strip()
+    max_install_count = os.getenv('MAX_INSTALL_COUNT', '').strip()
     
     return {
         'database_path': os.getenv('DATABASE_PATH', 'app_scout.db'),
@@ -45,6 +48,9 @@ def load_config() -> dict:
         'apps_per_run': int(os.getenv('APPS_PER_RUN', '20')),
         'search_query_count': int(os.getenv('SEARCH_QUERY_COUNT', '10')),
         'opportunity_threshold': int(os.getenv('OPPORTUNITY_THRESHOLD', '7')),
+        'max_app_rating': float(max_app_rating) if max_app_rating else None,
+        'min_install_count': int(min_install_count) if min_install_count else None,
+        'max_install_count': int(max_install_count) if max_install_count else None,
         'request_delay_seconds': int(os.getenv('REQUEST_DELAY_SECONDS', '2')),
         'continuous_run_duration_seconds': int(
             os.getenv('CONTINUOUS_RUN_DURATION_SECONDS', '0')

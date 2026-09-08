@@ -2,8 +2,10 @@
 
 import argparse
 import time
+import traceback
 
 from config import config
+from run_log import run_log
 from scout import ScoutApp
 
 
@@ -32,7 +34,6 @@ def main() -> None:
     if duration < 0:
         raise ValueError("CONTINUOUS_RUN_DURATION_SECONDS must be zero or greater")
 
-    app = ScoutApp()
     deadline = time.monotonic() + duration if duration else None
     if deadline is None:
         print(f"Continuous mode enabled; waiting {args.interval} seconds between runs.")
@@ -48,10 +49,14 @@ def main() -> None:
                 print("Continuous run duration reached; stopping before the next iteration.")
                 break
 
-            try:
-                app.run()
-            except Exception as error:
-                print(f"Scout iteration failed: {error}")
+            with run_log("continuous"):
+                try:
+                    if 'app' not in locals():
+                        app = ScoutApp()
+                    app.run()
+                except Exception as error:
+                    print(f"Scout iteration failed: {error}")
+                    traceback.print_exc()
 
             if deadline is not None and time.monotonic() >= deadline:
                 print("Continuous run duration reached; stopping after the completed iteration.")
