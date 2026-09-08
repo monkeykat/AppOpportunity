@@ -93,7 +93,7 @@ Phase 3 must operate independently.
 Before Phase 3 begins:
 
 1. Copy the completed Phase 2 project into the Phase 3 folder.
-2. Copy the completed Phase 2 `app_scout.db` database into the Phase 3 folder.
+2. Copy the completed Phase 2 database into the Phase 3 folder as `app_validator.db`.
 3. Phase 3 operates only on its own copy.
 4. Do not modify the Phase 1 database.
 5. Do not modify the Phase 2 database.
@@ -104,7 +104,7 @@ The database flow should be:
 ```
 PHASE 1
 
-app_scout.db
+app_validator.db
 ```
 
 ↓
@@ -116,7 +116,7 @@ app_scout.db
 ```
 PHASE 2
 
-app_scout.db
+app_validator.db
 ```
 
 ↓
@@ -128,7 +128,7 @@ app_scout.db
 ```
 PHASE 3
 
-app_scout.db
+app_validator.db
 ```
 
 Phase 3 adds its new table only to its own database copy.
@@ -152,7 +152,7 @@ Do not build a complex multi-agent system.
 
 Continue using:
 
-`app_scout.db`
+`app_validator.db`
 
 Phase 3 receives a copy of the completed Phase 2 database.
 
@@ -1602,7 +1602,7 @@ Example:
 
 │
 
-└── `app_scout.db`
+└── `app_validator.db`
 
 The database should be a copy of the completed Phase 2 database.
 

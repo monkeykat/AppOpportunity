@@ -42,9 +42,16 @@ Thumbs.db
 *.db
 /Scout/app_scout.db
 /Investigator/app_investigator.db
+/Validator/app_validator.db
 
 # Logs
 *.log
+/Scout/logs/*
+!/Scout/logs/.gitkeep
+/Investigator/logs/*
+!/Investigator/logs/.gitkeep
+/Validator/logs/*
+!/Validator/logs/.gitkeep
 
 # Configuration with secrets
 .env

@@ -12,6 +12,7 @@ The Validator currently provides:
 - Selection of one completed `STRONG_OPPORTUNITY` or `PROMISING` Phase 2 record.
 - Priority for `STRONG_OPPORTUNITY`, then highest Phase 2 score.
 - One validation per app through a unique database constraint.
+- Failed validations are retried in place on later runs.
 - `PENDING`, `IN_PROGRESS`, `COMPLETE`, and `FAILED` lifecycle states.
 - Strict viability score and recommendation-band validation.
 - A skeptical Ollama prompt and JSON client.
@@ -21,10 +22,11 @@ The Validator currently provides:
 
 ## Database Copy
 
-The working database is `Validator/app_scout.db`. It was copied from the
-completed Phase 2 database and may receive only the Phase 3
-`business_validations` table. The source Phase 2 database is not opened for
-normal Validator execution.
+The working database is `Validator/app_validator.db`. Each run automatically copies
+or synchronizes data from Investigator's `Investigator/app_investigator.db` into
+this private database before selecting an opportunity. Existing Phase 3
+`business_validations` records are preserved; the source Investigator database
+is never modified.
 
 Business-topic research uses `MAX_SEARCH_RESULTS` (default `10`) per topic and
 `MAX_RESEARCH_PAGES` (default `20`) across one run. Search can be injected in
@@ -38,9 +40,37 @@ From the repository root:
 python3 Validator/validate_business.py
 ```
 
-The current database contains no eligible completed Phase 2 opportunity, so the
-entry point exits cleanly until one is available. Tests use temporary databases
-and injected research and analysis callbacks.
+The command first synchronizes completed and newly added Phase 2 data, then
+processes one eligible opportunity. It exits cleanly when no eligible completed
+Phase 2 opportunity is available. Tests use temporary databases and injected
+research and analysis callbacks.
+
+Each run prints progress to the terminal and writes the same output to a
+timestamped log under `Validator/logs/`.
+
+To process eligible business opportunities continuously, run:
+
+```text
+python3 Validator/run_continuous.py
+```
+
+Continuous mode synchronizes Investigator before every iteration, processes
+one opportunity at a time, waits 30 seconds between iterations by default, and
+stops when no eligible opportunities remain. Change the delay with
+`--interval`:
+
+```text
+python3 Validator/run_continuous.py --interval 60
+```
+
+Set `VALIDATOR_CONTINUOUS_RUN_DURATION_SECONDS` in the shared `.env` file to
+limit the total runtime. `0` means run until interrupted with `Ctrl+C`:
+
+```env
+VALIDATOR_CONTINUOUS_RUN_DURATION_SECONDS=3600
+```
+
+Each continuous iteration creates its own timestamped log.
 
 Run the current tests with:
 
@@ -51,7 +81,7 @@ python3 -m unittest Validator.tests.test_validator -v
 ## Configuration and Recommendations
 
 The Validator uses Python, SQLite, Ollama, and standard-library public web
-research. Set `VALIDATOR_DATABASE_PATH`, `OLLAMA_URL`, `OLLAMA_MODEL`,
+research. Set `VALIDATOR_DATABASE_PATH`, `OLLAMA_URL`, `VALIDATOR_OLLAMA_MODEL`,
 `MAX_SEARCH_RESULTS`, or `MAX_RESEARCH_PAGES` in the environment when needed.
 
 Viability scores use these bands:
@@ -67,5 +97,6 @@ an adequate apparent market, and reachable customers. It is not a guarantee
 of business success.
 
 The database flow is one-way and copy-based: Phase 1 produces its database,
-Phase 2 works on its own copy, and Phase 3 works on `Validator/app_scout.db`.
-Phase 3 adds only `business_validations` to its private copy.
+Phase 2 owns `Investigator/app_investigator.db`, and Phase 3 synchronizes the
+Phase 2 tables into `Validator/app_validator.db`. Phase 3 adds only
+`business_validations` to its private copy.

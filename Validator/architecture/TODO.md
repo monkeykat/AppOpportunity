@@ -9,7 +9,7 @@ their databases.
 - [x] Confirm the Phase 1 and Phase 2 project trees and databases are preserved.
 - [x] Create the Phase 3 project structure and entry point `validate_business.py`.
 - [x] Copy the completed Phase 2 project inputs into the Phase 3 workspace.
-- [x] Copy the completed Phase 2 `app_scout.db` into the Phase 3 workspace.
+- [x] Copy the completed Phase 2 database into the Phase 3 workspace as `app_validator.db`.
 - [x] Configure Phase 3 to open only its own database copy.
 - [x] Verify Phase 3 does not import Phase 1 or Phase 2 Python modules at runtime.
 - [x] Keep dependencies limited to Python, SQLite, Ollama, Playwright, and required standard-library support.

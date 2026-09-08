@@ -1,0 +1,1500 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Bold;\f1\froman\fcharset0 Times-Roman;\f2\fmodern\fcharset0 Courier;
+\f3\fnil\fcharset0 Menlo-Regular;\f4\fmodern\fcharset0 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid201\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid401\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid5}
+{\list\listtemplateid6\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid501\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid6}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 \expnd0\expndtw0\kerning0
+Phase 4 MVP: Product Definition\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\fs36 \cf0 Goal\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Phase 1 finds interesting apps. (Complete)\
+Phase 2 determines whether there is a real opportunity. (Complete)\
+Phase 3 determines whether the opportunity could potentially become a viable business. (Complete)\
+Phase 4 asks:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 What should we build instead?
+\f1\b0 \
+The goal is to take a promising existing app and design a 
+\f0\b better, focused alternative
+\f1\b0 .\
+Not a clone.\
+Not a feature-for-feature replacement.\
+The system should determine:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+What problem the new product should solve\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Which users it should focus on\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+What the MVP should do\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+What should be improved\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+What should be removed\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+What features are actually necessary\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+How the product should differentiate itself\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+What the smallest useful version looks like\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 There is 
+\f0\b no frontend
+\f1\b0 .\
+The output is stored in SQLite.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Core Concept\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+EXISTING APP\
+        
+\f3 \uc0\u8595 
+\f2 \
+WHAT DOES IT DO?\
+        
+\f3 \uc0\u8595 
+\f2 \
+WHAT DO USERS LIKE?\
+        
+\f3 \uc0\u8595 
+\f2 \
+WHAT DO USERS HATE?\
+        
+\f3 \uc0\u8595 
+\f2 \
+WHAT ARE THEY MISSING?\
+        
+\f3 \uc0\u8595 
+\f2 \
+WHAT ARE COMPETITORS DOING?\
+        
+\f3 \uc0\u8595 
+\f2 \
+WHAT SHOULD WE DO DIFFERENTLY?\
+        
+\f3 \uc0\u8595 
+\f2 \
+REMOVE UNNECESSARY FEATURES\
+        
+\f3 \uc0\u8595 
+\f2 \
+DESIGN THE MVP\
+        
+\f3 \uc0\u8595 
+\f2 \
+PRODUCT SPECIFICATION\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Technology\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Use:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls2\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Python\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+SQLite\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Ollama\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 Use the research already collected in Phase 2 and Phase 3.\
+Additional public research may be performed if necessary.\
+Keep dependencies minimal.\
+Do not build a complicated multi-agent system.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Database\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Continue using:\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 Duplicate the database from phase 3 into this new phase, but call it app_designer.db
+\f2\fs26 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Do not redesign the existing tables.\
+Phase 4 should add 
+\f0\b one new table
+\f1\b0 :\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+product_designs\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 6. 
+\f4\fs39 product_designs
+\f0\fs36 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Stores the proposed product design.\
+Fields:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+id\
+\
+app_id\
+\
+status\
+\
+product_name\
+\
+product_summary\
+\
+target_user\
+\
+core_problem\
+\
+product_strategy\
+\
+differentiation\
+\
+must_have_features\
+\
+nice_to_have_features\
+\
+excluded_features\
+\
+mvp_scope\
+\
+technical_considerations\
+\
+success_criteria\
+\
+design_score\
+\
+recommendation\
+\
+created_at\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 One app should have only one product design.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f4\b\fs39 \cf0 status
+\f0\fs36 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Possible values:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+PENDING\
+\
+IN_PROGRESS\
+\
+COMPLETE\
+\
+FAILED\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Selecting an Opportunity\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Phase 4 should only process apps that passed Phase 3.\
+Prioritize:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+BUILD_CANDIDATE\
+\
+PROMISING\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Do not process:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+PASS\
+\
+POSSIBLE\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Select the highest scoring app that does not already have a completed product design.\
+Do not design the same product twice.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Main Loop\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+SELECT BUILD CANDIDATE\
+        
+\f3 \uc0\u8595 
+\f2 \
+READ PHASE 2 RESEARCH\
+        
+\f3 \uc0\u8595 
+\f2 \
+READ PHASE 3 BUSINESS VALIDATION\
+        
+\f3 \uc0\u8595 
+\f2 \
+IDENTIFY THE REAL PROBLEM\
+        
+\f3 \uc0\u8595 
+\f2 \
+IDENTIFY THE BEST TARGET USER\
+        
+\f3 \uc0\u8595 
+\f2 \
+IDENTIFY WHAT EXISTING APPS GET WRONG\
+        
+\f3 \uc0\u8595 
+\f2 \
+DECIDE WHAT TO DO DIFFERENTLY\
+        
+\f3 \uc0\u8595 
+\f2 \
+DEFINE CORE FEATURES\
+        
+\f3 \uc0\u8595 
+\f2 \
+REMOVE EVERYTHING UNNECESSARY\
+        
+\f3 \uc0\u8595 
+\f2 \
+DEFINE MVP\
+        
+\f3 \uc0\u8595 
+\f2 \
+CREATE PRODUCT DESIGN\
+        
+\f3 \uc0\u8595 
+\f2 \
+SAVE\
+        
+\f3 \uc0\u8595 
+\f2 \
+EXIT\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Each run should design 
+\f0\b one product
+\f1\b0 .\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 1: Understand the Existing Opportunity\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Read the results from:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Phase 2\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 and:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Phase 3\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Understand:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+What does the existing app do?\
+\
+What problem does it solve?\
+\
+Who uses it?\
+\
+What complaints do users have?\
+\
+What features do users like?\
+\
+What competitors exist?\
+\
+What alternatives exist?\
+\
+Why might users pay?\
+\
+Why might the business succeed?\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Do not repeat all previous research.\
+Use the existing research to make design decisions.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 2: Identify the Core Problem\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 This is one of the most important steps.\
+Determine:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 What problem should our product actually solve?
+\f1\b0 \
+Do not simply say:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+"We should build a better version of App X."\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Instead, identify the underlying problem.\
+For example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Existing App:\
+\
+Fishing Tracker\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The real problem might be:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+"I want to quickly remember and analyze my fishing trips."\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 That is more useful than:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+"We need to build a fishing app."\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Store:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+core_problem\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Keep it concise.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 3: Choose the Target User\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Do not try to build for everyone.\
+Determine the most promising user.\
+Examples:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Casual fishermen\
+\
+Serious hobbyists\
+\
+Professional guides\
+\
+Competitive anglers\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 These may all use fishing software.\
+But they may want very different things.\
+Select the user group that appears:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Most likely to have the problem\
+\
+Most dissatisfied with existing solutions\
+\
+Most likely to use a better solution\
+\
+Most likely to pay\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Store:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+target_user\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 4: Determine Product Strategy\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Determine the basic strategy for the product.\
+Possible strategies include:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+SIMPLER\
+\
+CHEAPER\
+\
+MORE_SPECIALIZED\
+\
+BETTER_WORKFLOW\
+\
+BETTER_USER_EXPERIENCE\
+\
+DIFFERENT_AUDIENCE\
+\
+SOLVE_MISSING_PROBLEM\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The product may use more than one strategy.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+SIMPLER\
++\
+MORE_SPECIALIZED\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Existing fishing apps attempt to provide:\
+\
+Maps\
+\
+Weather\
+\
+Social networking\
+\
+Species databases\
+\
+Fishing reports\
+\
+Community features\
+\
+Gear stores\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The new product might instead focus on:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Quickly logging fishing trips\
+\
+Tracking catches\
+\
+Photos\
+\
+Personal statistics\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The strategy is:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+SIMPLER\
+\
+MORE_SPECIALIZED\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Store:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+product_strategy\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 5: Define Differentiation\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Answer:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 Why would someone choose this product?
+\f1\b0 \
+Use the research from Phase 2.\
+Look for:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Repeated complaints\
+\
+Missing features\
+\
+Bad workflows\
+\
+Overly complicated competitors\
+\
+Expensive pricing\
+\
+Neglected user groups\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Create a concise statement.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+A fast and simple fishing journal designed specifically\
+for individual anglers who want to record and analyze\
+their own fishing history without advertisements,\
+social networking, or unnecessary features.\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Store:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+differentiation\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The differentiation should be meaningful.\
+Do not use:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+"Better UI"\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 by itself.\
+That is not a product strategy.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 6: Define Must-Have Features\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Determine the smallest set of features required to solve the core problem.\
+Ask:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 If we removed this feature, would the product still solve the main problem?
+\f1\b0 \
+If yes:\
+It probably does not belong in the MVP.\
+Store the features as JSON.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+[\
+  "Create fishing trip",\
+  "Record catch",\
+  "Add species",\
+  "Add location",\
+  "Attach photo",\
+  "View personal catch history"\
+]\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Store:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+must_have_features\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Keep this list small.\
+A reasonable MVP should generally have:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+3\'9610 core features\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Not:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+47 features\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 7: Define Nice-to-Have Features\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 These are useful features that should 
+\f0\b not be required for the first MVP
+\f1\b0 .\
+Examples:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Cloud synchronization\
+\
+Advanced statistics\
+\
+Social features\
+\
+Sharing\
+\
+AI recommendations\
+\
+Apple Watch integration\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Store as JSON:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+nice_to_have_features\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 These are intentionally excluded from the first build.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 8: Define Excluded Features\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 This is important.\
+Explicitly identify things the product should 
+\f0\b not do
+\f1\b0 .\
+Existing apps often become bloated because they try to solve every possible problem.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+[\
+  "Social network",\
+  "Public fishing maps",\
+  "Gear marketplace",\
+  "Advertising",\
+  "Community forums",\
+  "Professional tournament tracking"\
+]\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Store:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+excluded_features\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 This helps prevent the autonomous development system from building a monster.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 9: Define the MVP Scope\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Create a concise description of the smallest useful product.\
+Answer:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+What can a user do?\
+\
+What problem does it solve?\
+\
+What is intentionally missing?\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+The MVP allows an individual angler to create fishing\
+trips and record catches with basic information,\
+locations, and photos.\
+\
+The user can view their personal catch history.\
+\
+The MVP does not include social features, public maps,\
+weather forecasting, community content, or advanced\
+analytics.\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Store:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+mvp_scope\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 10: Identify Technical Considerations\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 This should remain high-level.\
+Do not design the entire architecture.\
+Identify important technical requirements.\
+Examples:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Mobile application\
+\
+Local database\
+\
+GPS access\
+\
+Camera access\
+\
+Cloud synchronization optional\
+\
+Public weather API optional\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Also identify possible concerns:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Third-party APIs\
+\
+Proprietary data\
+\
+Ongoing costs\
+\
+Specialized hardware\
+\
+Complex backend requirements\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Store:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+technical_considerations\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The goal is simply to avoid designing something that Phase 4 assumes is easy but is actually technically problematic.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 11: Define Success Criteria\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Determine what success would look like for the MVP.\
+Not business success.\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 Product success.
+\f1\b0 \
+Examples:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+A new user can understand the app without instructions.\
+\
+A user can perform the primary task in under one minute.\
+\
+The app solves the primary problem without unnecessary\
+features.\
+\
+The core workflow works reliably.\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Store:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+success_criteria\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Keep this simple.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 12: Generate the Product Summary\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 After the design is complete, ask Ollama to summarize the proposed product.\
+The goal is to create a concise product description.\
+Use a prompt similar to:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+You are designing a new software product based on\
+research into an existing application and its market.\
+\
+The goal is NOT to clone the existing application.\
+\
+The goal is to determine what product should be built\
+instead.\
+\
+Focus on:\
+\
+- The core user problem\
+- The best target user\
+- The strongest product strategy\
+- Meaningful differentiation\
+- The smallest useful feature set\
+\
+Avoid feature creep.\
+\
+Do not add features simply because competitors have them.\
+\
+Prefer a focused product that solves one problem well.\
+\
+PRODUCT RESEARCH:\
+\
+\{phase_2_results\}\
+\
+BUSINESS VALIDATION:\
+\
+\{phase_3_results\}\
+\
+CORE PROBLEM:\
+\
+\{core_problem\}\
+\
+TARGET USER:\
+\
+\{target_user\}\
+\
+PRODUCT STRATEGY:\
+\
+\{product_strategy\}\
+\
+DIFFERENTIATION:\
+\
+\{differentiation\}\
+\
+MUST-HAVE FEATURES:\
+\
+\{must_have_features\}\
+\
+NICE-TO-HAVE FEATURES:\
+\
+\{nice_to_have_features\}\
+\
+EXCLUDED FEATURES:\
+\
+\{excluded_features\}\
+\
+MVP SCOPE:\
+\
+\{mvp_scope\}\
+\
+Return only valid JSON:\
+\
+\{\
+    "product_name": "Working product name",\
+    "product_summary": "Concise description of the product.",\
+    "design_score": 1-10,\
+    "recommendation": "PASS | DESIGN_REVIEW | READY_FOR_POC"\
+\}\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Product Design Score\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 The design score represents:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 How strong and focused is this proposed product?
+\f1\b0 \
+It does 
+\f0\b not
+\f1\b0  represent business potential.\
+Phase 3 already evaluated business potential.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 Score 1\'963\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+PASS\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The product concept is unclear or does not meaningfully improve on existing solutions.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 Score 4\'965\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+DESIGN_REVIEW\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 There may be an opportunity, but the proposed product needs refinement.\
+Possible problems:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Unclear target user\
+\
+Weak differentiation\
+\
+Too many features\
+\
+No clear advantage\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 Score 6\'967\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+READY_FOR_POC\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The product has:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Clear problem\
+\
+Clear target user\
+\
+Meaningful differentiation\
+\
+Focused MVP\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Worth building as a proof of concept.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 Score 8\'9610\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+READY_FOR_POC\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The product design is especially strong.\
+It should still remain rare.\
+The system should be skeptical.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Running the Application\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Run:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+python design_product.py\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Each run should:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls3\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	1	}\expnd0\expndtw0\kerning0
+Select one validated business opportunity.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	2	}\expnd0\expndtw0\kerning0
+Read the Phase 2 investigation.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	3	}\expnd0\expndtw0\kerning0
+Read the Phase 3 business validation.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	4	}\expnd0\expndtw0\kerning0
+Identify the core problem.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	5	}\expnd0\expndtw0\kerning0
+Select the best target user.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	6	}\expnd0\expndtw0\kerning0
+Identify what existing products get wrong.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	7	}\expnd0\expndtw0\kerning0
+Define the product strategy.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	8	}\expnd0\expndtw0\kerning0
+Define meaningful differentiation.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	9	}\expnd0\expndtw0\kerning0
+Define must-have features.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	10	}\expnd0\expndtw0\kerning0
+Define nice-to-have features.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	11	}\expnd0\expndtw0\kerning0
+Define excluded features.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	12	}\expnd0\expndtw0\kerning0
+Define the MVP scope.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	13	}\expnd0\expndtw0\kerning0
+Identify high-level technical considerations.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	14	}\expnd0\expndtw0\kerning0
+Define product success criteria.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	15	}\expnd0\expndtw0\kerning0
+Generate a final product summary.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	16	}\expnd0\expndtw0\kerning0
+Save the product design.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 {\listtext	17	}\expnd0\expndtw0\kerning0
+Exit.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Project Structure\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+app-scout/\
+\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  scout.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  investigate.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  validate_business.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  design_product.py\
+
+\f3 \uc0\u9474 
+\f2 \
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  database.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  google_play.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  research.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  ollama_client.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  config.py\
+
+\f3 \uc0\u9474 
+\f2 \
+
+\f3 \uc0\u9492 \u9472 \u9472 
+\f2  app_scout.db\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Add:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+design_product.py\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Do not significantly complicate the project.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Important Rules\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\fs36 \cf0 1. Do Not Clone the Existing App\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 The goal is not:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Existing App\
+        
+\f3 \uc0\u8595 
+\f2 \
+Copy Features\
+        
+\f3 \uc0\u8595 
+\f2 \
+New App\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The goal is:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Existing App\
+        
+\f3 \uc0\u8595 
+\f2 \
+Understand Users\
+        
+\f3 \uc0\u8595 
+\f2 \
+Understand Problems\
+        
+\f3 \uc0\u8595 
+\f2 \
+Identify Opportunity\
+        
+\f3 \uc0\u8595 
+\f2 \
+Build Better Solution\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 2. Solve the Core Problem\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Do not build features just because they exist elsewhere.\
+Every feature should help solve:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+core_problem\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 3. Prefer Focus\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 A smaller product is often better.\
+Prefer:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+One problem\
+\
+One target user\
+\
+One clear workflow\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Over:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Everything for everyone\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 4. Explicitly Prevent Feature Creep\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 The system must actively identify features that should 
+\f0\b not
+\f1\b0  be built.\
+Use:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+excluded_features\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 This is just as important as:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+must_have_features\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 5. Keep Technical Design High-Level\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Do not create:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls4\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Complete database schemas\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+API specifications\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Detailed UI designs\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Full software architecture\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Complete technical requirements\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 That comes later.\
+Phase 4 answers:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 What should we build?
+\f1\b0 \
+Not:\
+
+\f0\b Exactly how should we build it?
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 6. Keep Everything Simple\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Do not build:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls5\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+A frontend\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+FastAPI\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Docker\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+User accounts\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Authentication\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Multiple AI agents\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Complex scheduling\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Vector databases\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+RAG\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Microservices\
+\ls5\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Detailed architecture diagrams\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Definition of Done\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Phase 4 is complete when:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+python design_product.py\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 will:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls6\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	1	}\expnd0\expndtw0\kerning0
+Select a viable Phase 3 business opportunity.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	2	}\expnd0\expndtw0\kerning0
+Read the existing research.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	3	}\expnd0\expndtw0\kerning0
+Identify the core problem.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	4	}\expnd0\expndtw0\kerning0
+Identify the best target user.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	5	}\expnd0\expndtw0\kerning0
+Identify what existing solutions get wrong.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	6	}\expnd0\expndtw0\kerning0
+Determine a product strategy.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	7	}\expnd0\expndtw0\kerning0
+Create meaningful differentiation.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	8	}\expnd0\expndtw0\kerning0
+Define a small set of must-have features.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	9	}\expnd0\expndtw0\kerning0
+Define nice-to-have features.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	10	}\expnd0\expndtw0\kerning0
+Define features that should explicitly be excluded.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	11	}\expnd0\expndtw0\kerning0
+Define the smallest useful MVP.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	12	}\expnd0\expndtw0\kerning0
+Identify high-level technical considerations.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	13	}\expnd0\expndtw0\kerning0
+Define product success criteria.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	14	}\expnd0\expndtw0\kerning0
+Generate a concise product description.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	15	}\expnd0\expndtw0\kerning0
+Score the product design.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	16	}\expnd0\expndtw0\kerning0
+Recommend whether it is ready for a POC.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 {\listtext	17	}\expnd0\expndtw0\kerning0
+Save everything to SQLite.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Core Idea\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 The pipeline now becomes:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+PHASE 1: SCOUT\
+\
+"Is this app interesting?"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 2: INVESTIGATOR\
+\
+"Is there a real opportunity here?"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 3: BUSINESS VALIDATOR\
+\
+"Could this actually make money?"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 4: PRODUCT DESIGNER\
+\
+"What should we build instead?"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PRODUCT DESIGN\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The important transformation happens here:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+EXISTING APP\
+\
+"Fishing Tracker Pro"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 1\
+\
+Interesting niche\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 2\
+\
+Users repeatedly complain that it is complicated,\
+expensive, and overloaded with features.\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 3\
+\
+There appears to be a viable audience willing to pay\
+for a simpler tool.\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 4\
+\
+DO NOT BUILD:\
+\
+"Fishing Tracker Pro Clone"\
+\
+BUILD:\
+\
+"A simple personal fishing journal for serious\
+recreational anglers."\
+}

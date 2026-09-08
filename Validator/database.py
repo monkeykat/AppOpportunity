@@ -90,14 +90,15 @@ def select_next_opportunity(database_path: Optional[Path] = None) -> Optional[Di
             """
             SELECT {opportunity_fields}, investigations.*,
                    investigations.id AS investigation_id,
-                   investigations.recommendation AS phase2_recommendation
+                     investigations.recommendation AS phase2_recommendation,
+                     business_validations.id AS validation_id
             FROM opportunities
             JOIN investigations ON opportunities.app_id = investigations.app_id
             LEFT JOIN business_validations
                 ON opportunities.app_id = business_validations.app_id
             WHERE investigations.status = 'COMPLETE'
               AND investigations.recommendation IN ('STRONG_OPPORTUNITY', 'PROMISING')
-              AND business_validations.id IS NULL
+                            AND (business_validations.id IS NULL OR business_validations.status = 'FAILED')
             ORDER BY CASE investigations.recommendation
                 WHEN 'STRONG_OPPORTUNITY' THEN 0
                 WHEN 'PROMISING' THEN 1

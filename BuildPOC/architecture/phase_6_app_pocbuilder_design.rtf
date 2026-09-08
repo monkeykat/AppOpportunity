@@ -1,0 +1,1518 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Bold;\f1\froman\fcharset0 Times-Roman;\f2\fmodern\fcharset0 Courier;
+\f3\fnil\fcharset0 Menlo-Regular;\f4\fnil\fcharset0 AppleColorEmoji;\f5\fmodern\fcharset0 Courier-Bold;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid1\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid301\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Phase 5 MVP: Autonomous Builder\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\fs36 \cf0 Goal\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Phase 1 finds interesting apps.\
+Phase 2 investigates whether there is a real opportunity.\
+Phase 3 determines whether it could potentially be a viable business.\
+Phase 4 determines:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 What should we build instead?
+\f1\b0 \
+Phase 5 asks:\
+
+\f0\b Can we build a basic version of it that validates the idea?
+\f1\b0 \
+The goal is to autonomously build a 
+\f0\b very small Proof of Concept
+\f1\b0 .\
+This is 
+\f0\b not
+\f1\b0  the full application.\
+This is 
+\f0\b not
+\f1\b0  production software.\
+This phase should build only enough of the product to demonstrate the core idea.\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+PRODUCT DESIGN\
+        
+\f3 \uc0\u8595 
+\f2 \
+IDENTIFY CORE WORKFLOW\
+        
+\f3 \uc0\u8595 
+\f2 \
+DEFINE TINY POC\
+        
+\f3 \uc0\u8595 
+\f2 \
+BUILD\
+        
+\f3 \uc0\u8595 
+\f2 \
+TEST\
+        
+\f3 \uc0\u8595 
+\f2 \
+WORKING POC\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Core Concept\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+PHASE 4\
+\
+"What should we build?"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 5\
+\
+"Can we build the smallest possible version?"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+WORKING POC\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The Autonomous Builder should take a product design like:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Simple fishing journal\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 And 
+\f0\b not
+\f1\b0  build:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+
+\f4 \uc0\u10060 
+\f2  Complete mobile application\
+\
+
+\f4 \uc0\u10060 
+\f2  User accounts\
+\
+
+\f4 \uc0\u10060 
+\f2  Cloud infrastructure\
+\
+
+\f4 \uc0\u10060 
+\f2  Social features\
+\
+
+\f4 \uc0\u10060 
+\f2  Payments\
+\
+
+\f4 \uc0\u10060 
+\f2  Notifications\
+\
+
+\f4 \uc0\u10060 
+\f2  Analytics\
+\
+
+\f4 \uc0\u10060 
+\f2  Every feature from the product design\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Instead, it might build:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+
+\f3 \uc0\u10003 
+\f2  Create fishing trip\
+\
+
+\f3 \uc0\u10003 
+\f2  Add catch\
+\
+
+\f3 \uc0\u10003 
+\f2  View saved catches\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 That's it.\
+The POC exists to prove:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 The core concept actually works.
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Input\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Phase 5 should only process products marked:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+READY_FOR_POC\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 It should use the results from:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Phase 2\
+Investigation\
+\
+        +\
+\
+Phase 3\
+Business Validation\
+\
+        +\
+\
+Phase 4\
+Product Design\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The primary input should be the Phase 4 product design.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Selecting a Product\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Select one product that:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+recommendation = READY_FOR_POC\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 And has not already been built.\
+Only build one product at a time.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Main Loop\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+SELECT PRODUCT\
+        
+\f3 \uc0\u8595 
+\f2 \
+READ PRODUCT DESIGN\
+        
+\f3 \uc0\u8595 
+\f2 \
+IDENTIFY CORE PROBLEM\
+        
+\f3 \uc0\u8595 
+\f2 \
+IDENTIFY CORE USER WORKFLOW\
+        
+\f3 \uc0\u8595 
+\f2 \
+REDUCE TO SMALLEST POSSIBLE POC\
+        
+\f3 \uc0\u8595 
+\f2 \
+CREATE BUILD PLAN\
+        
+\f3 \uc0\u8595 
+\f2 \
+BUILD POC\
+        
+\f3 \uc0\u8595 
+\f2 \
+RUN APPLICATION\
+        
+\f3 \uc0\u8595 
+\f2 \
+TEST CORE WORKFLOW\
+        
+\f3 \uc0\u8595 
+\f2 \
+FIX OBVIOUS PROBLEMS\
+        
+\f3 \uc0\u8595 
+\f2 \
+SAVE BUILD RESULT\
+        
+\f3 \uc0\u8595 
+\f2 \
+EXIT\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 1: Read the Product Design\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Read:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+core_problem\
+\
+target_user\
+\
+differentiation\
+\
+must_have_features\
+\
+excluded_features\
+\
+mvp_scope\
+\
+technical_considerations\
+\
+success_criteria\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Do not blindly implement every must-have feature.\
+Phase 5 should reduce the product even further.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 2: Identify the Core User Workflow\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Determine:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 What is the single most important thing the user needs to do?
+\f1\b0 \
+Example:\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b\fs28 \cf0 Product\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+Personal fishing journal\
+\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b\fs28 \cf0 Core workflow\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+OPEN APP\
+        
+\f3 \uc0\u8595 
+\f2 \
+CREATE FISHING TRIP\
+        
+\f3 \uc0\u8595 
+\f2 \
+ADD CATCH\
+        
+\f3 \uc0\u8595 
+\f2 \
+VIEW HISTORY\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 That workflow demonstrates the product.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 Another example:\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b\fs28 \cf0 Product\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0\fs26 \cf0 \
+Simple inventory management app\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Core workflow:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+ADD ITEM\
+        
+\f3 \uc0\u8595 
+\f2 \
+CHANGE QUANTITY\
+        
+\f3 \uc0\u8595 
+\f2 \
+VIEW INVENTORY\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 The POC should focus on one primary workflow.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 3: Reduce the Product to a Tiny POC\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 This is the most important step.\
+Ask:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 What is the smallest possible application that demonstrates the core idea?
+\f1\b0 \
+The Autonomous Builder should actively remove features.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+PRODUCT DESIGN\
+\
+Must-have features:\
+\
+- Create fishing trip\
+- Record catch\
+- Add location\
+- Add photo\
+- Track species\
+- View statistics\
+- Search history\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Phase 5 might reduce this to:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+POC\
+\
+- Create trip\
+- Add catch\
+- View catches\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 No:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+GPS\
+\
+Photos\
+\
+Cloud synchronization\
+\
+Accounts\
+\
+Statistics\
+\
+Search\
+\
+Payments\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Unless they are absolutely necessary to demonstrate the idea.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 POC Rule\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 The POC should answer:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 Does the core application concept work?
+\f1\b0 \
+It should not answer:\
+
+\f0\b Is the application complete?
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 4: Create a Simple Build Plan\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Before building, generate a very small plan.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+1. Create application.\
+\
+2. Create simple local data storage.\
+\
+3. Create screen to add fishing trip.\
+\
+4. Create screen to add catch.\
+\
+5. Create screen to view catches.\
+\
+6. Test workflow.\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Do not create:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+
+\f4 \uc0\u10060 
+\f2  100-step development plan\
+\
+
+\f4 \uc0\u10060 
+\f2  Enterprise architecture document\
+\
+
+\f4 \uc0\u10060 
+\f2  Complete technical specification\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The plan should be short.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 5: Choose the Simplest Technology\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 The system should choose the easiest reasonable technology for the POC.\
+The goal is:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+FAST\
++\
+SIMPLE\
++\
+WORKING\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Not:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+PERFECT\
++\
+SCALABLE\
++\
+ENTERPRISE READY\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 For example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Web App\
+\
+Python + simple frontend\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Or:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Mobile App\
+\
+React Native / Expo\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Or another simple technology appropriate for the product.\
+The technology choice should be based on:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+What best demonstrates the core workflow?\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Do not build unnecessary infrastructure.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 6: Build the POC\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 This part will likely require further design later.\
+For now, the general concept is:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+PRODUCT DESIGN\
+        
+\f3 \uc0\u8595 
+\f2 \
+BUILD INSTRUCTIONS\
+        
+\f3 \uc0\u8595 
+\f2 \
+AUTONOMOUS CODING SYSTEM\
+        
+\f3 \uc0\u8595 
+\f2 \
+SOURCE CODE\
+        
+\f3 \uc0\u8595 
+\f2 \
+RUN APPLICATION\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The Autonomous Builder should use an agentic coding system to build the POC.\
+Possible future options could include:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Roo Code\
+\
+Codex\
+\
+OpenCode\
+\
+Claude Code\
+\
+Local Ollama coding agent\
+\
+Custom agent harness\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b\fs24 \cf0 The specific coding system does not need to be decided yet.
+\f1\b0 \
+Phase 5 should be designed so the builder can eventually use whichever coding agent you decide works best.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Builder Responsibilities\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 The coding system should:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Create project\
+\
+Write code\
+\
+Run application\
+\
+Check for errors\
+\
+Fix obvious errors\
+\
+Run again\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The goal is to reach:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+APPLICATION RUNS\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Not:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+APPLICATION IS PERFECT\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 7: Test the Core Workflow\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 After building, test the primary workflow.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+START APPLICATION\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+CREATE FISHING TRIP\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+ADD CATCH\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+SAVE\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+VIEW CATCH\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 The test can initially be very simple.\
+The builder should verify:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Application starts\
+\
+Core workflow works\
+\
+Data is saved\
+\
+No obvious crashes\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Step 8: Fix Obvious Problems\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 If the application fails:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+APPLICATION DOES NOT START\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Fix it.\
+If:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+CORE WORKFLOW DOES NOT WORK\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Fix it.\
+Do not enter an endless development cycle.\
+The system should have limits.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Maximum build attempts: 3\
+\
+Maximum fix attempts: 5\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 These values can be configuration options.\
+If the POC still fails:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+BUILD_FAILED\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Save the result.\
+Do not endlessly attempt to fix it.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Database\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Continue using:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+app_scout.db\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Phase 5 should add one table:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+poc_builds\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 7. 
+\f5\fs39 poc_builds
+\f0\fs36 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Fields:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+id\
+\
+app_id\
+\
+status\
+\
+poc_description\
+\
+core_workflow\
+\
+technology\
+\
+project_path\
+\
+build_plan\
+\
+build_result\
+\
+test_result\
+\
+created_at\
+\
+completed_at\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f5\b\fs39 \cf0 status
+\f0\fs36 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Possible values:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+PENDING\
+\
+IN_PROGRESS\
+\
+COMPLETE\
+\
+FAILED\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f5\b\fs52 \cf0 \strokec2 poc_description
+\f0\fs48 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 A concise explanation of what was built.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+A simple local fishing journal that allows a user to\
+create a fishing trip, add catches, and view saved\
+catches.\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f5\b\fs52 \cf0 \strokec2 core_workflow
+\f0\fs48 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Create trip 
+\f3 \uc0\u8594 
+\f2  Add catch 
+\f3 \uc0\u8594 
+\f2  View history\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f5\b\fs52 \cf0 \strokec2 technology
+\f0\fs48 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+React Native + Expo\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Or:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Python + Flask\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Keep this flexible.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f5\b\fs52 \cf0 \strokec2 project_path
+\f0\fs48 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Store the location of the generated project.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+/projects/fishing-journal-poc/\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f5\b\fs52 \cf0 \strokec2 build_plan
+\f0\fs48 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Store the short build plan.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f5\b\fs52 \cf0 \strokec2 build_result
+\f0\fs48 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Store a concise summary.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+POC successfully built.\
+\
+Application starts successfully.\
+\
+User can create a trip and add catches.\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f5\b\fs52 \cf0 \strokec2 test_result
+\f0\fs48 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+PASS\
+\
+Core workflow successfully tested.\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Or:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+FAILED\
+\
+Application starts but catches are not saved.\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Autonomous Builder Prompt\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 The exact implementation will need more thought later.\
+But the core instruction should look something like this:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+You are an autonomous software builder.\
+\
+Your job is to build a very small Proof of Concept\
+for a software product.\
+\
+This is NOT a production application.\
+\
+Do not attempt to build the complete product.\
+\
+Your goal is to demonstrate the core user workflow\
+with the smallest possible amount of functionality.\
+\
+PRODUCT:\
+\
+\{product_summary\}\
+\
+CORE PROBLEM:\
+\
+\{core_problem\}\
+\
+TARGET USER:\
+\
+\{target_user\}\
+\
+CORE DIFFERENTIATION:\
+\
+\{differentiation\}\
+\
+MUST-HAVE FEATURES:\
+\
+\{must_have_features\}\
+\
+EXCLUDED FEATURES:\
+\
+\{excluded_features\}\
+\
+PRODUCT MVP:\
+\
+\{mvp_scope\}\
+\
+Your first task is to determine the smallest possible\
+POC.\
+\
+Prefer removing features over adding features.\
+\
+The POC should demonstrate the core value of the\
+application.\
+\
+Create a short build plan.\
+\
+Choose simple technology.\
+\
+Build the application.\
+\
+Run the application.\
+\
+Test the core workflow.\
+\
+Fix obvious errors.\
+\
+Do not add:\
+\
+- User accounts\
+- Authentication\
+- Payments\
+- Production infrastructure\
+- Cloud infrastructure\
+- Analytics\
+- Complex architecture\
+- Features unrelated to the core workflow\
+\
+Stop when the core concept works.\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Running the Application\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Eventually:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+python build_poc.py\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Each run should:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Select one 
+\f2\fs26 READY_FOR_POC
+\f1\fs24  product.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Read the product design.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Identify the core user workflow.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Reduce the product to the smallest possible POC.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Create a short build plan.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Select simple technology.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Send the task to the autonomous coding system.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	8	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Build the application.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	9	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Run the application.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	10	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Test the core workflow.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	11	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Fix obvious errors.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	12	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Save the result.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	13	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Exit.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \strokec2 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Project Structure\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 For now:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+app-scout/\
+\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  scout.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  investigate.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  validate_business.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  design_product.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  build_poc.py\
+
+\f3 \uc0\u9474 
+\f2 \
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  database.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  google_play.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  research.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  ollama_client.py\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  config.py\
+
+\f3 \uc0\u9474 
+\f2 \
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  builds/\
+
+\f3 \uc0\u9474 
+\f2 \
+
+\f3 \uc0\u9492 \u9472 \u9472 
+\f2  app_scout.db\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Add:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+build_poc.py\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 And:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+builds/\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Each generated POC can have its own directory.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+builds/\
+\
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  fishing-journal/\
+
+\f3 \uc0\u9474 
+\f2 \
+
+\f3 \uc0\u9500 \u9472 \u9472 
+\f2  inventory-tracker/\
+
+\f3 \uc0\u9474 
+\f2 \
+
+\f3 \uc0\u9492 \u9472 \u9472 
+\f2  bird-identification-log/\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Important Rules\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\fs36 \cf0 1. Build a POC, Not an App\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 This is the most important rule.\
+The system should constantly ask:\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 What can I remove?
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 2. Focus on One Workflow\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Prefer:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+INPUT\
+  
+\f3 \uc0\u8595 
+\f2 \
+CORE ACTION\
+  
+\f3 \uc0\u8595 
+\f2 \
+RESULT\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Add Item\
+   
+\f3 \uc0\u8595 
+\f2 \
+Save Item\
+   
+\f3 \uc0\u8595 
+\f2 \
+View Item\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Over a dozen disconnected features.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 3. Do Not Rebuild the Existing App\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Phase 4 already determined what the new product should be.\
+Phase 5 should build:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+THE NEW PRODUCT CONCEPT\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Not:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+THE ORIGINAL APP\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 4. Avoid Infrastructure\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Do not automatically build:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls2\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 APIs\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Servers\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Cloud databases\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Authentication\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Docker\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Kubernetes\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Microservices\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 Unless absolutely necessary for the POC.\
+Local storage is perfectly acceptable.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 5. Failure Is an Acceptable Result\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 This is important.\
+The system should be allowed to conclude:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+FAILED\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 For example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+The POC could not be built successfully.\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Or:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+The proposed core workflow was more technically\
+complicated than expected.\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 That's useful information.\
+The machine doesn't have to emerge victorious from every tiny software cave. 
+\f4 \uc0\u55357 \u57056 \u65039 
+\f1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f0\b\fs36 \cf0 6. Do Not Loop Forever\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Use limits.\
+Example:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+Maximum build attempts: 3\
+\
+Maximum repair attempts: 5\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 Save the failure if necessary.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Keep Everything Simple\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Do not build:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls3\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 A frontend for the pipeline itself\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 User accounts\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Authentication\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Complex scheduling\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Microservices\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Kubernetes\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Production infrastructure\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 CI/CD pipelines\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Detailed monitoring\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Complex autonomous agent hierarchies\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 The generated POC may have a UI because it is an application.\
+But 
+\f0\b the App Scout pipeline itself does not need a UI.
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Definition of Done\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 Phase 5 is complete when:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+python build_poc.py\
+\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\fs24 \cf0 can:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls4\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Select a product marked 
+\f2\fs26 READY_FOR_POC
+\f1\fs24 .\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Read the Phase 4 product design.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Identify the primary user workflow.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Reduce the product to the smallest useful POC.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Create a short build plan.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Select appropriate simple technology.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Hand the task to an autonomous coding system.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	8	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Generate a project.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	9	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Build the application.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	10	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Run the application.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	11	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Test the core workflow.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	12	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Attempt to fix obvious errors.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	13	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Stop after a reasonable number of attempts.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	14	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Save the build results.\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	15	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Record whether the POC worked.\
+\pard\pardeftab720\partightenfactor0
+\cf0 \strokec2 \
+\pard\pardeftab720\sa321\partightenfactor0
+
+\f0\b\fs48 \cf0 Core Idea\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs24 \cf0 The complete pipeline now looks like:\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf0 \
+PHASE 1\
+SCOUT\
+\
+"Is this app interesting?"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 2\
+INVESTIGATOR\
+\
+"Is there a real opportunity here?"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 3\
+BUSINESS VALIDATOR\
+\
+"Could this actually make money?"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 4\
+PRODUCT DESIGNER\
+\
+"What should we build instead?"\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+PHASE 5\
+AUTONOMOUS BUILDER\
+\
+"Build a tiny version of it."\
+\
+        
+\f3 \uc0\u8595 
+\f2 \
+\
+WORKING POC\
+}

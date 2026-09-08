@@ -10,6 +10,29 @@ except ImportError:
 
 SCORE_FIELDS = ("viability_score",)
 
+ASSESSMENT_SCHEMA = {
+    "type": "object",
+    "required": [
+        "product_concept", "target_customer", "value_proposition",
+        "differentiation", "monetization", "willingness_to_pay",
+        "apparent_market_size", "customer_acquisition_difficulty",
+        "revenue_potential", "business_risks", "key_assumptions",
+        "viability_score", "recommendation", "summary",
+    ],
+    "properties": {
+        field: {"type": "string", "minLength": 1}
+        for field in TEXT_FIELDS
+    },
+    "additionalProperties": False,
+}
+ASSESSMENT_SCHEMA["properties"]["viability_score"] = {
+    "type": "integer", "minimum": 1, "maximum": 10,
+}
+ASSESSMENT_SCHEMA["properties"]["recommendation"] = {
+    "type": "string",
+    "enum": list(RECOMMENDATIONS),
+}
+
 
 def validate_assessment(result: Dict[str, Any]) -> None:
     required = set(TEXT_FIELDS + SCORE_FIELDS + ("recommendation",))

@@ -11,6 +11,7 @@ from Validator.database import (
     recover_interrupted_validations,
     select_next_opportunity,
 )
+from Validator.handoff import sync_from_investigator
 from Validator.ollama_client import OllamaClient
 from Validator.validate_business import run_one_validation
 
@@ -35,7 +36,7 @@ VALID_RESULT = {
 
 class ValidatorTests(unittest.TestCase):
     def create_database(self, directory: str) -> Path:
-        database_path = Path(directory) / "app_scout.db"
+        database_path = Path(directory) / "app_validator.db"
         with get_connection(database_path) as connection:
             connection.executescript(
                 """
@@ -92,7 +93,7 @@ class ValidatorTests(unittest.TestCase):
 
     def test_selection_accepts_minimal_opportunities_schema(self):
         with TemporaryDirectory() as directory:
-            database_path = Path(directory) / "app_scout.db"
+            database_path = Path(directory) / "app_validator.db"
             with get_connection(database_path) as connection:
                 connection.executescript(
                     """
@@ -111,6 +112,33 @@ class ValidatorTests(unittest.TestCase):
             selected = select_next_opportunity(database_path)
             self.assertEqual(selected["app_id"], 99)
             self.assertIsNone(selected["app_name"])
+
+    def test_investigator_sync_preserves_existing_business_validation(self):
+        with TemporaryDirectory() as directory:
+            source_path = self.create_database(directory)
+            target_path = Path(directory) / "Validator" / "app_validator.db"
+            self.insert_opportunity(source_path, 10, "PROMISING", 6)
+
+            self.assertEqual(sync_from_investigator(source_path, target_path), 1)
+            with get_connection(target_path) as connection:
+                connection.execute(
+                    "INSERT INTO business_validations (app_id, status) VALUES (10, 'COMPLETE')"
+                )
+            with get_connection(source_path) as connection:
+                connection.execute(
+                    "UPDATE investigations SET final_score = 7 WHERE app_id = 10"
+                )
+
+            sync_from_investigator(source_path, target_path)
+            with get_connection(target_path) as connection:
+                investigation = connection.execute(
+                    "SELECT final_score FROM investigations WHERE app_id = 10"
+                ).fetchone()
+                validation = connection.execute(
+                    "SELECT status FROM business_validations WHERE app_id = 10"
+                ).fetchone()
+            self.assertEqual(investigation[0], 7)
+            self.assertEqual(validation[0], "COMPLETE")
 
     def test_lifecycle_saves_one_complete_validation(self):
         with TemporaryDirectory() as directory:
@@ -145,6 +173,18 @@ class ValidatorTests(unittest.TestCase):
                 row = connection.execute("SELECT status, error FROM business_validations").fetchone()
             self.assertEqual(row[0], "FAILED")
             self.assertIn("research failed", row[1])
+            self.assertTrue(
+                run_one_validation(
+                    lambda _opportunity: {"additional_research": {}},
+                    lambda _opportunity, _research: dict(VALID_RESULT),
+                    database_path,
+                )
+            )
+            with get_connection(database_path) as connection:
+                rows = connection.execute(
+                    "SELECT status FROM business_validations"
+                ).fetchall()
+            self.assertEqual([row[0] for row in rows], ["COMPLETE"])
 
     def test_interrupted_validation_is_recovered(self):
         with TemporaryDirectory() as directory:
