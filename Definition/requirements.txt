@@ -1,0 +1,2 @@
+# Phase 4 uses the Python standard library. python-dotenv is optional.
+python-dotenv>=1.0.0

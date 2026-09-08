@@ -51,6 +51,8 @@ Model Building
 Wedding Photography
 Real Estate Photography
 Dance Instruction
+Cosplay
+Book Discovery
 
 # Electronics
 Raspberry Pi
@@ -59,6 +61,8 @@ Robotics
 
 # Financial
 Budgeting - Envelope Method
+Debt Payoff
+Couponing
 
 # Fishing
 Bass Fishing
@@ -94,14 +98,21 @@ Life Organizing
 Legal Research
 Elder Care
 Personal Medical Record
+Digital Nomad
+Side Hustles
+Homesteading
 
 # Music
 Music Practice
 Guitar Pedals
 Guitar Amps
+Guitar Scales
 Home Recording
 Piano Repair
 Music Setlist Management
+Music Discovery
+Audiophile
+Playlists
 
 # Nerd Stuff
 LARPing
@@ -138,6 +149,7 @@ Rope Tying
 Urban Exploration
 Van Life
 Snorkeling
+Backpacking
 
 # Plants
 Raising Plants
@@ -182,6 +194,7 @@ Blacksmithing
 # Toys/Games
 Board Games
 Video Game Systems
+Video Game Walkthroughs
 Retro Gaming
 Tabletop RPG's
 Miniature Painting
@@ -193,10 +206,15 @@ Drone Racing
 Model Railroad Building
 Yoyo Tricks
 
-# Vehicles
+# Transportation
 RV Travel
 RV Hookups
 RV Repair
+Motorcycle Repair
 Automotive Repair
 Amateur Aviation
+Aviation Instruction
 Driving Instruction
+Bicycling
+Bicycle Repair
+Bus Schedules
