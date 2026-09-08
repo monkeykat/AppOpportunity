@@ -23,9 +23,10 @@ python3 investigate.py
 ```
 
 Before each investigation, Phase 2 reads Scout's
-`Scout/src/app_scout.db` and adds any new opportunities to its private
-`app_investigator.db`. Existing opportunities and investigations are left
-unchanged. No JSON export or manual database copy is required.
+`Scout/src/app_scout.db` and synchronizes new or changed opportunity data into
+its private `app_investigator.db`. Existing investigation records and results
+are preserved; updated Scout metadata, scores, and reasons are refreshed. No
+JSON export or manual database copy is required.
 
 The explicit `handoff.py` JSON importer remains available for offline or
 historical handoffs, but it is not needed for the normal workflow.
@@ -56,12 +57,12 @@ stopping. Set `--interval` to change the delay:
 python3 run_continuous.py --interval 60
 ```
 
-Set `CONTINUOUS_RUN_DURATION_SECONDS` in the shared workspace `.env` file to
+Set `INVESTIGATOR_CONTINUOUS_RUN_DURATION_SECONDS` in the shared workspace `.env` file to
 limit how long continuous mode runs. `0` means run until interrupted with
 `Ctrl+C`:
 
 ```env
-CONTINUOUS_RUN_DURATION_SECONDS=3600
+INVESTIGATOR_CONTINUOUS_RUN_DURATION_SECONDS=3600
 ```
 
 Each continuous iteration creates its own timestamped log in `Investigator/logs/`.

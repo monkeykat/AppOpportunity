@@ -156,7 +156,7 @@ def run_investigator_iteration(database_path=None) -> bool:
     scout_database = WORKSPACE_DIR / "Scout" / "src" / "app_scout.db"
     print("Syncing new opportunities from Scout...")
     imported = sync_from_scout(scout_database, phase_2_database)
-    print("Synced {} new opportunities from Scout.".format(imported))
+    print("Synchronized {} Scout opportunity row change(s).".format(imported))
     return run_one_investigation(collect_research, analyze_with_ollama, phase_2_database)
 
 

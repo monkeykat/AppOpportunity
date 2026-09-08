@@ -108,7 +108,7 @@ class Phase2Tests(unittest.TestCase):
                 ).fetchall()
             self.assertEqual([tuple(row) for row in rows], [(1, "Original", 5), (2, "New", 7)])
 
-    def test_sync_from_scout_adds_new_opportunities_only(self):
+    def test_sync_from_scout_adds_and_updates_opportunities(self):
         with TemporaryDirectory() as directory:
             root = Path(directory)
             scout_path = root / "Scout" / "src" / "app_scout.db"
@@ -149,14 +149,14 @@ class Phase2Tests(unittest.TestCase):
                 [{"app_id": 1, "app_name": "Existing", "score": 9}],
                 phase_2_path,
             )
-            self.assertEqual(sync_from_scout(scout_path, phase_2_path), 1)
+            self.assertEqual(sync_from_scout(scout_path, phase_2_path), 2)
             with get_connection(phase_2_path) as connection:
                 rows = connection.execute(
                     "SELECT app_id, app_name, score FROM opportunities ORDER BY app_id"
                 ).fetchall()
             self.assertEqual(
                 [tuple(row) for row in rows],
-                [(1, "Existing", 9), (2, "New", 6)],
+                [(1, "Original", 5), (2, "New", 6)],
             )
 
     def test_ollama_prompt_requests_complete_assessment(self):

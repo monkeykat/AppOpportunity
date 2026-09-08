@@ -27,7 +27,7 @@ def sync_from_scout(
     scout_database_path: Path,
     database_path: Path = None,
 ) -> int:
-    """Add Scout opportunities to the private Phase 2 database."""
+    """Synchronize Scout opportunities into the private Phase 2 database."""
     if not scout_database_path.exists():
         raise FileNotFoundError("Scout database not found: {}".format(scout_database_path))
 
@@ -62,7 +62,17 @@ def sync_from_scout(
                     app_id, app_name, developer, url, description, category,
                     rating, review_count, install_count, score, reason
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ON CONFLICT(app_id) DO NOTHING
+                ON CONFLICT(app_id) DO UPDATE SET
+                    app_name = excluded.app_name,
+                    developer = excluded.developer,
+                    url = excluded.url,
+                    description = excluded.description,
+                    category = excluded.category,
+                    rating = excluded.rating,
+                    review_count = excluded.review_count,
+                    install_count = excluded.install_count,
+                    score = excluded.score,
+                    reason = excluded.reason
                 """,
                 tuple(row),
             )

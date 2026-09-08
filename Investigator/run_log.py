@@ -48,7 +48,7 @@ def run_log(mode: str) -> Iterator[Path]:
             print(f"Log file: {log_path}")
             try:
                 from config import (
-                    CONTINUOUS_RUN_DURATION_SECONDS,
+                    INVESTIGATOR_CONTINUOUS_RUN_DURATION_SECONDS,
                     OLLAMA_MODEL,
                     OLLAMA_URL,
                     get_database_path,
@@ -59,7 +59,7 @@ def run_log(mode: str) -> Iterator[Path]:
                 print(f"Ollama model: {OLLAMA_MODEL}")
                 print(
                     "Continuous run duration (seconds): "
-                    f"{CONTINUOUS_RUN_DURATION_SECONDS}"
+                    f"{INVESTIGATOR_CONTINUOUS_RUN_DURATION_SECONDS}"
                 )
             except (ImportError, KeyError):
                 print("Configuration snapshot unavailable.")
