@@ -15,6 +15,7 @@ Architecture source: `phase_2_app_investigator_design.rtf`
 - [x] Do not build a frontend.
 - [x] Do not build a complex multi-agent system.
 - [x] Process exactly one opportunity per run.
+- [x] Add optional continuous mode that repeats one-opportunity iterations until a configured duration expires.
 - [x] Ensure an app can have only one investigation.
 
 ## Project Setup
@@ -53,6 +54,7 @@ Architecture source: `phase_2_app_investigator_design.rtf`
 - [x] Mark successful runs `COMPLETE` and save `investigated_at`.
 - [x] Mark failed runs `FAILED` while preserving the error context needed for diagnosis.
 - [x] Exit cleanly when no uninvestigated opportunities remain.
+- [x] Keep continuous mode alive when an iteration has no available opportunity so a later Scout sync can add work.
 
 ## Research Collection
 

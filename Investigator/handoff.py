@@ -23,6 +23,53 @@ OPPORTUNITY_FIELDS = (
 )
 
 
+def sync_from_scout(
+    scout_database_path: Path,
+    database_path: Path = None,
+) -> int:
+    """Add Scout opportunities to the private Phase 2 database."""
+    if not scout_database_path.exists():
+        raise FileNotFoundError("Scout database not found: {}".format(scout_database_path))
+
+    init_database(database_path)
+    imported = 0
+    source = get_connection(scout_database_path)
+    try:
+        source_columns = {
+            row[1]
+            for row in source.execute("PRAGMA table_info(opportunities)")
+        }
+        app_name = "opportunities.app_name" if "app_name" in source_columns else "apps.name"
+        rows = source.execute(
+            """
+            SELECT opportunities.app_id, {} AS app_name, apps.developer,
+                   apps.url, apps.description, apps.category, apps.rating,
+                   apps.review_count, apps.install_count, opportunities.score,
+                   opportunities.reason
+            FROM opportunities
+            LEFT JOIN apps ON apps.id = opportunities.app_id
+            ORDER BY opportunities.id
+            """.format(app_name)
+        ).fetchall()
+    finally:
+        source.close()
+
+    with get_connection(database_path) as connection:
+        for row in rows:
+            connection.execute(
+                """
+                INSERT INTO opportunities (
+                    app_id, app_name, developer, url, description, category,
+                    rating, review_count, install_count, score, reason
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(app_id) DO NOTHING
+                """,
+                tuple(row),
+            )
+            imported += connection.execute("SELECT changes()").fetchone()[0]
+    return imported
+
+
 def import_opportunities(records: Iterable[Dict[str, Any]], database_path: Path = None) -> int:
     """Copy opportunity records from an export without touching Scout."""
     init_database(database_path)
@@ -36,21 +83,11 @@ def import_opportunities(records: Iterable[Dict[str, Any]], database_path: Path 
             connection.execute(
                 """
                 INSERT INTO opportunities ({}) VALUES ({})
-                ON CONFLICT(app_id) DO UPDATE SET
-                    app_name = excluded.app_name,
-                    developer = excluded.developer,
-                    url = excluded.url,
-                    description = excluded.description,
-                    category = excluded.category,
-                    rating = excluded.rating,
-                    review_count = excluded.review_count,
-                    install_count = excluded.install_count,
-                    score = excluded.score,
-                    reason = excluded.reason
+                ON CONFLICT(app_id) DO NOTHING
                 """.format(", ".join(OPPORTUNITY_FIELDS), ", ".join("?" for _ in OPPORTUNITY_FIELDS)),
                 values,
             )
-            imported += 1
+            imported += connection.execute("SELECT changes()").fetchone()[0]
     return imported
 
 

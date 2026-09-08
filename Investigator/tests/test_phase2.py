@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT))
 from analysis import validate_assessment
 from boundary_check import assert_unchanged, snapshot_files
 from database import get_connection, recover_interrupted_investigations, select_next_opportunity
-from handoff import import_opportunities
+from handoff import import_opportunities, sync_from_scout
 from investigate import analyze_with_ollama, run_one_investigation
 from ollama_client import OllamaClient
 from research import collect_research
@@ -85,6 +85,79 @@ class Phase2Tests(unittest.TestCase):
             handoff_target = Path(directory) / "phase2.db"
             import_opportunities([{"app_id": 10, "score": 8}], handoff_target)
             assert_unchanged(before, [protected])
+
+    def test_handoff_adds_new_opportunities_without_overwriting_existing(self):
+        with TemporaryDirectory() as directory:
+            database_path = Path(directory) / "investigator.db"
+            import_opportunities(
+                [{"app_id": 1, "app_name": "Original", "score": 5}],
+                database_path,
+            )
+            added = import_opportunities(
+                [
+                    {"app_id": 1, "app_name": "Changed", "score": 9},
+                    {"app_id": 2, "app_name": "New", "score": 7},
+                ],
+                database_path,
+            )
+
+            self.assertEqual(added, 1)
+            with get_connection(database_path) as connection:
+                rows = connection.execute(
+                    "SELECT app_id, app_name, score FROM opportunities ORDER BY app_id"
+                ).fetchall()
+            self.assertEqual([tuple(row) for row in rows], [(1, "Original", 5), (2, "New", 7)])
+
+    def test_sync_from_scout_adds_new_opportunities_only(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            scout_path = root / "Scout" / "src" / "app_scout.db"
+            scout_path.parent.mkdir(parents=True)
+            phase_2_path = root / "Investigator" / "app_investigator.db"
+
+            with sqlite3.connect(scout_path) as connection:
+                connection.executescript(
+                    """
+                    CREATE TABLE apps (
+                        id INTEGER PRIMARY KEY,
+                        name TEXT,
+                        developer TEXT,
+                        url TEXT,
+                        description TEXT,
+                        category TEXT,
+                        rating REAL,
+                        review_count INTEGER,
+                        install_count TEXT
+                    );
+                    CREATE TABLE opportunities (
+                        id INTEGER PRIMARY KEY,
+                        app_id INTEGER UNIQUE,
+                        app_name TEXT,
+                        score INTEGER,
+                        reason TEXT
+                    );
+                    INSERT INTO apps VALUES
+                        (1, 'Original', 'Dev', 'https://original.test', 'Old', 'Tools', 3.0, 10, '1000'),
+                        (2, 'New', 'Dev', 'https://new.test', 'New', 'Tools', 2.0, 20, '2000');
+                    INSERT INTO opportunities VALUES
+                        (1, 1, 'Original', 5, 'Original reason'),
+                        (2, 2, 'New', 6, 'New reason');
+                    """
+                )
+
+            import_opportunities(
+                [{"app_id": 1, "app_name": "Existing", "score": 9}],
+                phase_2_path,
+            )
+            self.assertEqual(sync_from_scout(scout_path, phase_2_path), 1)
+            with get_connection(phase_2_path) as connection:
+                rows = connection.execute(
+                    "SELECT app_id, app_name, score FROM opportunities ORDER BY app_id"
+                ).fetchall()
+            self.assertEqual(
+                [tuple(row) for row in rows],
+                [(1, "Existing", 9), (2, "New", 6)],
+            )
 
     def test_ollama_prompt_requests_complete_assessment(self):
         class PromptClient:

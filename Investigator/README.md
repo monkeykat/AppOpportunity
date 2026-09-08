@@ -16,15 +16,21 @@ No Phase 1 module is required at runtime. The research collector uses Python's s
 
 ## Phase 1 handoff
 
-Export opportunities from Phase 1 into a JSON array, then import that export explicitly:
+Run Phase 2 directly after Scout:
 
 ```bash
-python3 handoff.py phase_1_opportunities.json
+python3 investigate.py
 ```
 
-Each record must contain `app_id` and `score`. The import creates or updates the Phase 2-owned `opportunities` table in `app_investigator.db`.
+Before each investigation, Phase 2 reads Scout's
+`Scout/src/app_scout.db` and adds any new opportunities to its private
+`app_investigator.db`. Existing opportunities and investigations are left
+unchanged. No JSON export or manual database copy is required.
 
-For a formal boundary check, snapshot the Phase 1 export source and database before the handoff, then call `boundary_check.assert_unchanged` afterward. This check is explicit and separate from normal Phase 2 execution; the investigator does not discover or open the Scout database automatically.
+The explicit `handoff.py` JSON importer remains available for offline or
+historical handoffs, but it is not needed for the normal workflow.
+
+For a formal boundary check, snapshot the Phase 1 export source and database before the handoff, then call `boundary_check.assert_unchanged` afterward. This check is explicit and separate from normal Phase 2 execution; the automatic sync only reads Scout and never modifies it.
 
 ## Run
 
@@ -33,6 +39,32 @@ python3 investigate.py
 ```
 
 Each run processes at most one opportunity. It collects available public evidence, asks Ollama for a structured assessment, validates the scores and recommendation, and stores the result in the Phase 2 database.
+
+Each run also writes a timestamped copy of its console output to `Investigator/logs/` while continuing to display progress in the terminal.
+
+To keep processing one opportunity at a time, run continuous mode:
+
+```bash
+python3 run_continuous.py
+```
+
+Continuous mode syncs Scout before every iteration, waits 30 seconds between
+iterations by default, and allows the active investigation to finish before
+stopping. Set `--interval` to change the delay:
+
+```bash
+python3 run_continuous.py --interval 60
+```
+
+Set `CONTINUOUS_RUN_DURATION_SECONDS` in the shared workspace `.env` file to
+limit how long continuous mode runs. `0` means run until interrupted with
+`Ctrl+C`:
+
+```env
+CONTINUOUS_RUN_DURATION_SECONDS=3600
+```
+
+Each continuous iteration creates its own timestamped log in `Investigator/logs/`.
 
 Run the offline test suite with:
 
