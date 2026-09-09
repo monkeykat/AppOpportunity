@@ -40,20 +40,20 @@ Thumbs.db
 
 # Database
 *.db
-/Scout/app_scout.db
-/Investigator/app_investigator.db
-/Validator/app_validator.db
+/1_Scout/src/app_scout.db
+/2_Investigator/app_investigator.db
+/3_Validator/app_validator.db
 
 # Logs
 *.log
-/Scout/logs/*
-!/Scout/logs/.gitkeep
-/Investigator/logs/*
-!/Investigator/logs/.gitkeep
-/Validator/logs/*
-!/Validator/logs/.gitkeep
+/1_Scout/logs/*
+!/1_Scout/logs/.gitkeep
+/2_Investigator/logs/*
+!/2_Investigator/logs/.gitkeep
+/3_Validator/logs/*
+!/3_Validator/logs/.gitkeep
 
 # Configuration with secrets
 .env
-/Scout/.env
-/Investigator/.env
+/1_Scout/.env
+/2_Investigator/.env
