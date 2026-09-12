@@ -1,164 +1,337 @@
 # Animals
-Raising Chickens
 Beekeeping
+Bird Calls
 Bird Watching
 Bird Identification
 Bug Identification
+Butterfly Identification
+Cat Breeding
+Cat Shows
+Cattle Ranching
+Chicken Raising
 Dog Training
 Dog Breeding
-Pet Boarding
-Livestock Management
-Chicken Raising
-Reef Aquariums
-Fish Feeding
-Fish Identification
+Dog shows
+Dog walking
 Exotic Pets
+Fish Feeding
+Frog Identification
+Horse Care
+Horse Racing
+Horse Riding
+Livestock Management
+Pet Boarding
 Pet Grooming
+Pet Sitting
+Raising Chickens
+Reef Aquariums
+Snake Identification
+Turtle Identification
+Wildlife Identification
 
 # Church
 Bible Study
-Prayer Tracking
+Christian Journaling
+Church Communication
 Church Event Management
 Church Worship
+Hymns
+Mission Trips
+Prayer Tracking
+Sermon Preparation
 
-# Clothing
-T-Shirt Printing
+# Clothing/Fashion
+Clothing Alterations
+Clothing Reselling
+Color Matching
+Costume Design
 Leatherworking
+Pant Size
+Shirt Size
+Shoe Size
+Sneakers
+Style
+T-Shirt Printing
+Vintage clothing
 
 # Collecting
-Coin Collecting
-Stamp Collecting
-Rock Collecting
-Book Collecting
+Action Figure Collecting
 Antique Collecting
-Knife Collecting
+Book Collecting
+Coin Collecting
 Comic Book Collecting
-Vinyl Collecting
+Knife Collecting
 LEGO Collecting
+Rock Collecting
+Sport Card Collecting
+Sport Memorabilia
+Stamp Collecting
+Trading Card Collecting
+Vintage Electronics
+Vinyl Collecting
 
 # Creative
 3D Printing
-Laser Engraving
-Crochet Patterns
-Knitting Patterns
-Sewing Patterns
-Quilting Patterns
-Cross Stitch Patterns
-Watercolor Painting
-Creative Writing
-Jewelry Making
-Model Building
-Wedding Photography
-Real Estate Photography
-Dance Instruction
-Cosplay
+Animation
 Book Discovery
+Calligraphy
+Cosplay
+Creative Writing
+Crochet Patterns
+Cross Stitch Patterns
+Dance Instruction
+Jewelry Making
+Knitting Patterns
+Laser Engraving
+Model Building
+Origami
+Pixel Art
+Quilting Patterns
+Real Estate Photography
+Sewing Patterns
+Storyboarding
+Stop Motion
+Tattoo
+Watercolor Painting
+Wedding Photography
 
 # Electronics
-Raspberry Pi
 Ham Radio
+Home Automation
+Mechanical Keyboards
+NAS
+Raspberry Pi
 Robotics
 
+# Events
+Baby Showers
+Birthday Parties
+Bachelor Parties
+Festivals
+Marriage
+Road Trips
+Weddings
+
 # Financial
+Bill Tracking
 Budgeting - Envelope Method
-Debt Payoff
+Cash Flow Tracking
 Couponing
+Debt Payoff
+eBay Selling
+Expense Tracking
+Freelancer Finances
+House Flipping
+Small Business Accounting
 
 # Fishing
 Bass Fishing
-Saltwater Fishing
 Fly Fishing
-Tackle Making
 Fishing Knots
+Fishing Regulations
+Fishing Forecasts
+Fishing Logs
+Fishing Tournaments
+Fish Identification
+Freshwater Fishing
+Saltwater Fishing
+Tackle Making
 
 # Food
-Home Brewing
-Recipe Organization
 Breadmaking
+Candy Making
+Canning
+Cocktail Recipes
 Coffee Brewing
 Coffee Roasting
+Dehydrating
+Fermentation
+Foraging
+Home Brewing
+Mushroom Identification
+Pickling
+Pizza Making
+Recipe Organization
 Smoking Meat
-Cocktail Recipes
 
 # Home
-Home Inspection
-Yard Work
-Organizing
-Home Maintenance
 Appliance Repair
+Freezer Inventory
+Home Inspection
+Home Inventory
+Home Maintenance
+Organizing
 Pest Removal
 Property Management
 Septic Maintenance
+Warranty Tracking
+Yard Work
 
 # Lifestyle
-Chore Management
 Allowance Tracking
+Bucket List
+Celebration Tracking
+Chore Management
+Digital Nomad
+Emergency Preparedness
+Family Operations
+Friend Tracker
 Goal Tracking
+Homesteading
+Immigration
+Journaling
+Life Administration
 Life Organizing
 Legal Research
-Elder Care
-Personal Medical Record
-Digital Nomad
+Personal History
+Physical World Memory
+Relationship Tracking
 Side Hustles
-Homesteading
+Subscription Tracking
+Travel Journaling
+AI Companion App
+
+# Medical
+ADHD
+Anxiety
+Baby Nursing
+Death in the Family
+Depression
+Elder Care
+Having a Baby
+Medication Interactions
+OCD
+Pain Tracking
+Personal Medical Record
+Physical Therapy
+Symptom Tracking
+Vaccination Records
 
 # Music
-Music Practice
+Audiophile
 Guitar Pedals
 Guitar Amps
 Guitar Scales
+Guitar Chords
+Guitar Tuning
 Home Recording
-Piano Repair
+Music Practice
 Music Setlist Management
 Music Discovery
-Audiophile
+Music Composition
+Music Theory
+Piano Chords
+Piano Repair
+Piano Tuning
 Playlists
 
 # Nerd Stuff
 LARPing
 
+# Odd Jobs
+Handyman Services
+House Cleaning
+Junk Removal
+Locksmith
+Mobile Car Detailing
+Mobile Mechanic
+Notary Services
+Pool Maintenance
+Pressure Washing
+Window Cleaning
+
 # Organizing
-Equipment Tracking
-Maintenance Schedules
 Certification Tracking
-Training Records
-Shift Scheduling
+Equipment Tracking
 Event Planning
+Field Service
+Inspection Checklists
+Maintenance Schedules
+Shift Scheduling
+Training Records
 
 # Organizations
-National Parks
-State Parks
+Building Permits
+CDC
+DMV
 FAA
+FCC
+FDA
+FEMA
+NASA
+National Forests
+National Parks
+NOAA
+OSHA
+Public Records
+Restaurant Inspections
+State Parks
+USDA
 USGS
 
 # Outdoors
+Backpacking
+Boat Ramps
+Canoeing
+Geocaching
 Hiking Trails
-Packing for Hiking
-Pioneer Camping
-Packing for Camping
 Kayak Paddles
 Kayaks
 Kayak Gear
 Kayak Fishing
-Canoeing
-Boat Ramps
 Mountain Biking
-Geocaching
-Survival Skills
+Outdoor Navigation
+Packing for Camping
+Packing for Hiking
+Pioneer Camping
 Rope Tying
+Spelunking
+Scuba Diving
+Snorkeling
+Survival Skills
 Urban Exploration
 Van Life
-Snorkeling
-Backpacking
+
+# Pain Points
+Finding Parking
+Forgotten Passwords
+Lost Items
+Medication Refills
+Moving
+Packing
+Remembering Names
+Similar Products
+Tracking Borrowed Items
+Tracking Receipts
+Understanding Documents
+Waiting in Line
+RAG (Retrieval Augmented Generation)
+
+# Places
+Flea Markets
+Roadside Attractions
+Thrift Stores
 
 # Plants
+Composting
+Gardening
+Hydroponics
+Plant Propagation
+Plant Identification
 Raising Plants
+Wildflowers
 
 # School
+AI Note Taking
+College Scholarships
 Home Schooling
+Memory Training
+Note Taking
+Recording Lectures
+Sign Language
+Study Skills
 Test Preperation
 Tutoring
-College Scholarships
 
 # Science
 Amateur Astronomy
@@ -172,49 +345,73 @@ Garage Sales
 Used Goods Marketplace
 Inventory Management
 
-# Sports
-Weightlifting
-Rock Climbing
-Yoga Poses
+# Software - General
+eBook
+PDF Reader
+PDF Scanner
+
+# Sports / Fitness
+Calorie Tracker
 Golf Clubs
 Golf Courses
-Pickleball Courts
-Ski Resorts
-Youth Sports
 Martial Arts Dojos
+Pickleball Courts
+Running Races
+Race Times
+Rock Climbing
+Skateboards
+Ski Resorts
+Skydiving
+Surfing
+Weightlifting
+Yoga Poses
+Youth Sports
 
 # Tools
-Tool Identification
-Woodworking Techniques
-Tool Sharpening
-Construction Equipment
 Blacksmith Tools
 Blacksmithing
+CNC Machines
+Construction Equipment
+Small Engine Repair
+Tool Identification
+Tool Sharpening
+Woodworking Techniques
 
 # Toys/Games
+Arcade Games
 Board Games
-Video Game Systems
-Video Game Walkthroughs
-Retro Gaming
-Tabletop RPG's
-Miniature Painting
 Chess Clubs
+Circus
+Drone Racing
+Escape Rooms
+Game Guides
 Game Modding
+Game Walkthroughs
+Magic The Gathering
+Miniature Painting
+Model Railroad Building
+Pokemon Cards
 RC Car Racing
 RC Car Parts
-Drone Racing
-Model Railroad Building
+Retro Gaming
+Speedrunning
+Tabletop RPG's
+Video Game Systems
+Video Game Walkthroughs
 Yoyo Tricks
 
 # Transportation
-RV Travel
-RV Hookups
-RV Repair
-Motorcycle Repair
 Automotive Repair
 Amateur Aviation
 Aviation Instruction
-Driving Instruction
 Bicycling
 Bicycle Repair
 Bus Schedules
+Driving Instruction
+EV Charging Stations
+Flight Tracking
+Motorcycle Repair
+Parking Spot
+RV Travel
+RV Hookups
+RV Repair

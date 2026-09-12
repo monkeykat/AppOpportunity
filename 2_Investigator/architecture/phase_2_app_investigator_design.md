@@ -697,7 +697,7 @@ Investigator/
         `-- phase_2_app_investigator_design.md
 ```
 
-The modules listed above are Phase 2-owned implementations. They must not be imported from `Scout`.
+The modules listed above are Phase 2-owned implementations. They must not be imported from `1_Scout`.
 
 The Phase 1 opportunity handoff may be implemented as a separate explicit import/export step, for example by copying the relevant opportunity fields into `app_investigator.db`. It must not mutate the source database.
 

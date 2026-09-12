@@ -118,6 +118,9 @@ app_id
 product_design_id
 status
 
+source_design_designed_at
+source_design_snapshot
+
 architecture_summary
 poc_platform
 runtime_and_entrypoint
@@ -148,9 +151,13 @@ error
 ```
 
 `product_design_id` must be `NOT NULL UNIQUE` and reference the copied
-`product_designs` record. `app_id` must reference the inherited opportunity.
-Store multi-value fields as JSON arrays or JSON objects and validate them
-before persistence. `architecture_score` must be an integer from 1 to 10.
+`product_designs` record. `app_id` must be `NOT NULL UNIQUE` and reference the
+inherited opportunity. `source_design_designed_at` and
+`source_design_snapshot` capture the exact Phase 4 input used to create the
+architecture. The snapshot must contain the authoritative Phase 4 fields and
+the source design ID, status, recommendation, and designed timestamp. Store
+multi-value fields as JSON arrays or JSON objects and validate them before
+persistence. `architecture_score` must be an integer from 1 to 10.
 
 ### Status
 
@@ -161,6 +168,7 @@ PENDING
 IN_PROGRESS
 COMPLETE
 FAILED
+STALE
 ```
 
 The lifecycle follows the earlier phases:
@@ -170,9 +178,12 @@ The lifecycle follows the earlier phases:
 3. Validate the complete architecture output.
 4. Save all fields in one transaction and mark it `COMPLETE`.
 5. On an error, store the error and mark it `FAILED`.
-6. Recover abandoned `IN_PROGRESS` records as `FAILED` on the next run.
-7. Retry a failed record in place; do not create a duplicate.
-8. Do not automatically repeat completed architectures.
+7. Recover abandoned `IN_PROGRESS` records as `FAILED` on the next run.
+8. Mark a `COMPLETE` architecture `STALE` when its copied Phase 4 design
+   changes or is no longer eligible for Phase 5.
+9. Retry `FAILED` and `STALE` records in place; do not create duplicates.
+10. Do not automatically repeat completed architectures whose source design
+  is unchanged.
 
 ## Selecting a Product Design
 
@@ -184,9 +195,17 @@ product_designs.recommendation = READY_FOR_POC
 ```
 
 Select a design when it has no architecture record or its existing architecture
-has `status = FAILED`. Prioritize the highest Phase 4 `design_score`, then use
-`app_id` as a deterministic tie-breaker. Do not process `PASS` or
-`DESIGN_REVIEW` designs, and do not architect the same product design twice.
+has `status = FAILED` or `STALE`. Prioritize the highest inherited Phase 3
+`viability_score` first because it represents opportunity promise, then the
+Phase 4 `design_score` because it represents product-definition strength, then
+ascending `app_id` as a deterministic tie-breaker. Do not process `PASS` or
+`DESIGN_REVIEW` designs, and do not architect the same unchanged product design
+twice.
+
+The selection query must require the current copied Phase 4 design to be
+`COMPLETE` and `READY_FOR_POC`, and must verify that its saved source validation
+is still current. A Phase 4 design that is `STALE`, whose source validation has
+changed, or whose full Phase 4 validator no longer accepts it is not eligible.
 
 ## Main Loop
 
@@ -406,6 +425,17 @@ If a deviation prevents testing the hypothesis, the architecture must not
 receive `READY_TO_BUILD`. Record non-blocking POC constraints separately in
 `known_limitations`.
 
+### Step 10: Preserve the Phase 4 Contract
+
+Before saving an architecture, compare its `core_workflow_steps` and
+`completion_criteria` with the copied Phase 4 source snapshot. The architecture
+must cover every capability in `minimum_validation_scope`, must not implement
+an item from `excluded_features`, and must preserve the validation hypothesis.
+Any approved deviation must name the affected Phase 4 field and state whether
+the hypothesis remains testable. A missing capability, an unapproved feature,
+or a deviation that invalidates the hypothesis is a validation failure, not a
+`READY_TO_BUILD` architecture.
+
 ## Structured Ollama Output
 
 Ollama may help create the architecture, but the program must validate every
@@ -416,6 +446,26 @@ The prompt must require the Phase 4 product definition as authoritative; forbid
 new product features or repeated business validation; require the simplest
 architecture capable of completing and testing the workflow; and demand valid
 JSON matching the required schema.
+
+The runtime validator must also enforce:
+
+- `poc_platform` is one of the documented platform values.
+- `core_workflow_steps`, `technology_choices`, `data_flow`, `build_plan`,
+  `test_plan`, `completion_criteria`, and `known_limitations` are arrays of
+  non-empty strings.
+- Every component has `name`, `responsibility`, `input`, and `output`.
+- Every acceptance step has `precondition`, `action`, `expected_result`, and
+  `verification`.
+- Every data-model entry has `entity`, `required_fields`, and `purpose`.
+- Every technical risk has a severity, impact, mitigation, and
+  `blocks_validation` flag.
+- Every scope deviation has an original requirement, technical reason,
+  replacement approach, impact, and hypothesis-preserved flag.
+- `runtime_and_entrypoint` is non-empty and executable in principle; an exact
+  command must be recorded for Phase 6 to run independently.
+- A `READY_TO_BUILD` architecture has no unresolved high-severity risk that
+  blocks validation and no deviation that makes the hypothesis untestable.
+- The response contains no fields outside the declared schema.
 
 The required output shape is:
 
@@ -494,6 +544,12 @@ The implementation must reject a score/recommendation mismatch:
 
 Only architecture records with `status = COMPLETE` and
 `recommendation = READY_TO_BUILD` are eligible for Phase 6.
+
+Phase 6 must receive the architecture snapshot, the source Phase 4 design
+snapshot, `runtime_and_entrypoint`, `build_plan`, `test_plan`,
+`workflow_acceptance_steps`, `completion_criteria`, `known_limitations`, and
+`scope_deviations`. It must not reconstruct these values by rereading mutable
+upstream rows.
 
 ## Running the Application
 
@@ -579,7 +635,9 @@ Phase 5 is complete when `python architecture_poc.py` can:
 11. Validate JSON structure, lifecycle state, score, and recommendation before
     persistence.
 12. Save a completed architecture only when it is buildable and can test the
-    Phase 4 hypothesis.
-13. Retry failed records in place without repeating completed work.
-14. Make only completed `READY_TO_BUILD` architectures available to Phase 6.
-15. Log and report progress, failures, retries, and queue completion.
+  Phase 4 hypothesis.
+13. Preserve a bounded snapshot of the exact Phase 4 design used.
+14. Mark architectures stale when their source design changes.
+15. Retry failed and stale records in place without repeating unchanged work.
+16. Make only completed `READY_TO_BUILD` architectures available to Phase 6.
+17. Log and report progress, failures, retries, staleness, and queue completion.
