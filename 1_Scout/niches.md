@@ -73,6 +73,7 @@ Vinyl Collecting
 # Creative
 3D Printing
 Animation
+Book Club
 Book Discovery
 Calligraphy
 Cosplay
@@ -80,6 +81,7 @@ Creative Writing
 Crochet Patterns
 Cross Stitch Patterns
 Dance Instruction
+Image Converter
 Jewelry Making
 Knitting Patterns
 Laser Engraving
@@ -113,15 +115,18 @@ Road Trips
 Weddings
 
 # Financial
+Audio Editor
 Bill Tracking
 Budgeting - Envelope Method
 Cash Flow Tracking
 Couponing
+Currency Conversion
 Debt Payoff
 eBay Selling
 Expense Tracking
 Freelancer Finances
 House Flipping
+House Flip Calculator
 Small Business Accounting
 
 # Fishing
@@ -148,7 +153,9 @@ Dehydrating
 Fermentation
 Foraging
 Home Brewing
+Menu Scanner
 Mushroom Identification
+Nutrition Label Scanner
 Pickling
 Pizza Making
 Recipe Organization
@@ -166,6 +173,7 @@ Property Management
 Septic Maintenance
 Warranty Tracking
 Yard Work
+ZIP Code Lookup
 
 # Lifestyle
 Allowance Tracking
@@ -196,9 +204,12 @@ ADHD
 Anxiety
 Baby Nursing
 Death in the Family
+Deep Breathing
 Depression
 Elder Care
+Groundedness (Anxiety)
 Having a Baby
+Material Safety Data Sheets
 Medication Interactions
 OCD
 Pain Tracking
@@ -215,6 +226,7 @@ Guitar Scales
 Guitar Chords
 Guitar Tuning
 Home Recording
+Metronome
 Music Practice
 Music Setlist Management
 Music Discovery
@@ -346,9 +358,24 @@ Used Goods Marketplace
 Inventory Management
 
 # Software - General
+Audio to Text
+Barcode Inventory
+Business Card Scanner
+Color Identifier
 eBook
+Handwriting to Text
+Image to Text
+ISBN Lookup
+Light Meter
+OCR Scanner
 PDF Reader
 PDF Scanner
+Sound Meter
+Spreadsheet
+Time Clock
+Time Zone Converter
+Tip Calculator
+UPC Lookup
 
 # Sports / Fitness
 Calorie Tracker
@@ -415,3 +442,4 @@ Parking Spot
 RV Travel
 RV Hookups
 RV Repair
+VIN Lookup
